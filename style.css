@@ -41,3 +41,13 @@ button.secondary { background: rgba(255,255,255,0.18); color: white; }
   padding: 14px;
 }
 .hidden { display: none; }
+
+a-scene, canvas {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+#ui {
+  z-index: 9999 !important;
+}
