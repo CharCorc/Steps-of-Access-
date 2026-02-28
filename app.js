@@ -1,3 +1,5 @@
+alert("app.js loaded"); //for debugging
+
 const bodyText = document.getElementById("bodyText");
 const textSize = document.getElementById("textSize");
 const startBtn = document.getElementById("startBtn");
