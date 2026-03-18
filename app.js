@@ -2,16 +2,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const textSize = document.getElementById("textSize");
 
   const welcomeModal = document.getElementById("welcomeModal");
-  const storyModal = document.getElementById("storyModal");
+  const introModal = document.getElementById("introModal");
+  const arControls = document.getElementById("arControls");
   const timelineModal = document.getElementById("timelineModal");
+  const resourcesPage = document.getElementById("resourcesPage");
 
-  const startExperienceBtn = document.getElementById("startExperienceBtn");
-
-  const storyTitle = document.getElementById("storyTitle");
-  const storyBody = document.getElementById("storyBody");
-  const storyProgress = document.getElementById("storyProgress");
-  const storyBackBtn = document.getElementById("storyBackBtn");
-  const storyNextBtn = document.getElementById("storyNextBtn");
+  const welcomeNextBtn = document.getElementById("welcomeNextBtn");
+  const introBackBtn = document.getElementById("introBackBtn");
+  const introStartBtn = document.getElementById("introStartBtn");
   const skipToTimelineBtn = document.getElementById("skipToTimelineBtn");
 
   const timelineTitle = document.getElementById("timelineTitle");
@@ -20,52 +18,34 @@ window.addEventListener("DOMContentLoaded", () => {
   const timelineBackBtn = document.getElementById("timelineBackBtn");
   const timelineNextBtn = document.getElementById("timelineNextBtn");
 
-  const sceneEl = document.getElementById("scene");
+  const resourcesBackBtn = document.getElementById("resourcesBackBtn");
+  const resourcesRestartBtn = document.getElementById("resourcesRestartBtn");
 
-  const storyScreens = [
-    {
-      title: "Welcome",
-      body: "Placeholder text. This screen will introduce the experience and frame Brookings Hall as a meaningful architectural site."
-    },
-    {
-      title: "Architecture and Access",
-      body: "Placeholder text. This screen begins shifting the stairs from campus architecture. ~Portal Effect ooooh~"
-    },
-    {
-      title: "Capitol Overlay",
-      body: "Placeholder text. This screen explains the overlay of the Capitol steps onto Brookings and introduces the Capitol Crawl."
-    }
-  ];
+  const sceneEl = document.getElementById("scene");
 
   const timelineEvents = [
     {
       label: "1990",
-      title: "Timeline Event",
+      title: "Timeline Event 1",
       body: "Placeholder text."
     },
     {
-      label: "1990",
-      title: "Timeline Event",
-      body: "Placeholder text."
-    },
-     {
-      label: "YEAR",
-      title: "Timeline Event",
+      label: "DATE",
+      title: "Timeline Event 2",
       body: "Placeholder text."
     },
     {
-      label: "2008",
-      title: "Timeline Event ",
+      label: "DATE",
+      title: "Timeline Event 3",
       body: "Placeholder text."
     },
     {
       label: "Today",
-      title: "Timeline Event",
+      title: "Timeline Event 4",
       body: "Placeholder text."
     }
   ];
 
-  let storyIndex = 0;
   let timelineIndex = 0;
   let arStarted = false;
 
@@ -73,36 +53,39 @@ window.addEventListener("DOMContentLoaded", () => {
     document.documentElement.style.setProperty("--text", `${textSize.value}px`);
   });
 
-  function showWelcome() {
-    welcomeModal.classList.remove("hidden");
-    storyModal.classList.add("hidden");
+  function hideAllOverlays() {
+    welcomeModal.classList.add("hidden");
+    introModal.classList.add("hidden");
+    arControls.classList.add("hidden");
     timelineModal.classList.add("hidden");
+    resourcesPage.classList.add("hidden");
   }
 
-  function showStory(index = 0) {
-    storyIndex = Math.max(0, Math.min(index, storyScreens.length - 1));
-    welcomeModal.classList.add("hidden");
-    storyModal.classList.remove("hidden");
-    timelineModal.classList.add("hidden");
-    renderStory();
+  function showWelcome() {
+    hideAllOverlays();
+    welcomeModal.classList.remove("hidden");
+  }
+
+  function showIntro() {
+    hideAllOverlays();
+    introModal.classList.remove("hidden");
+  }
+
+  function showARView() {
+    hideAllOverlays();
+    arControls.classList.remove("hidden");
   }
 
   function showTimeline(index = 0) {
     timelineIndex = Math.max(0, Math.min(index, timelineEvents.length - 1));
-    welcomeModal.classList.add("hidden");
-    storyModal.classList.add("hidden");
+    hideAllOverlays();
     timelineModal.classList.remove("hidden");
     renderTimeline();
   }
 
-  function renderStory() {
-    const screen = storyScreens[storyIndex];
-    storyTitle.textContent = screen.title;
-    storyBody.textContent = screen.body;
-    storyProgress.textContent = `Screen ${storyIndex + 1} of ${storyScreens.length}`;
-
-    storyBackBtn.disabled = storyIndex === 0;
-    storyNextBtn.textContent = storyIndex === storyScreens.length - 1 ? "Go to Timeline →" : "Next →";
+  function showResources() {
+    hideAllOverlays();
+    resourcesPage.classList.remove("hidden");
   }
 
   function renderTimeline() {
@@ -112,7 +95,7 @@ window.addEventListener("DOMContentLoaded", () => {
     timelineProgress.textContent = `Event ${timelineIndex + 1} of ${timelineEvents.length}`;
 
     timelineBackBtn.disabled = timelineIndex === 0;
-    timelineNextBtn.textContent = timelineIndex === timelineEvents.length - 1 ? "Finish" : "Next →";
+    timelineNextBtn.textContent = timelineIndex === timelineEvents.length - 1 ? "Go to Resources →" : "Next →";
   }
 
   async function startARIfPossible() {
@@ -128,27 +111,17 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  startExperienceBtn.addEventListener("click", async () => {
+  welcomeNextBtn.addEventListener("click", () => {
+    showIntro();
+  });
+
+  introBackBtn.addEventListener("click", () => {
+    showWelcome();
+  });
+
+  introStartBtn.addEventListener("click", async () => {
     await startARIfPossible();
-    showStory(0);
-  });
-
-  storyBackBtn.addEventListener("click", () => {
-    if (storyIndex > 0) {
-      storyIndex -= 1;
-      renderStory();
-    } else {
-      showWelcome();
-    }
-  });
-
-  storyNextBtn.addEventListener("click", () => {
-    if (storyIndex < storyScreens.length - 1) {
-      storyIndex += 1;
-      renderStory();
-    } else {
-      showTimeline(0);
-    }
+    showARView();
   });
 
   skipToTimelineBtn.addEventListener("click", () => {
@@ -160,7 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
       timelineIndex -= 1;
       renderTimeline();
     } else {
-      showStory(storyScreens.length - 1);
+      showARView();
     }
   });
 
@@ -169,8 +142,16 @@ window.addEventListener("DOMContentLoaded", () => {
       timelineIndex += 1;
       renderTimeline();
     } else {
-      showWelcome();
+      showResources();
     }
+  });
+
+  resourcesBackBtn.addEventListener("click", () => {
+    showTimeline(timelineEvents.length - 1);
+  });
+
+  resourcesRestartBtn.addEventListener("click", () => {
+    showWelcome();
   });
 
   showWelcome();

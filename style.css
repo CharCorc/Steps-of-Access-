@@ -19,6 +19,7 @@ a-scene, canvas {
   pointer-events: none;
 }
 
+/* Fullscreen overlays */
 .fullscreenModal {
   position: fixed;
   inset: 0;
@@ -30,7 +31,6 @@ a-scene, canvas {
 }
 
 .modalCard {
-  width: min(760px, 94vw);
   background: rgba(10,10,10,0.96);
   color: #FFFFFF;
   border-radius: 22px;
@@ -39,15 +39,26 @@ a-scene, canvas {
   box-shadow: 0 10px 40px rgba(0,0,0,0.45);
 }
 
+.largeCard {
+  width: min(760px, 94vw);
+}
+
+.scrollCard {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
 .modalCard h1,
-.modalCard h2 {
+.modalCard h2,
+.modalCard h3 {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
 #welcomeText,
-#storyBody,
-#timelineBody {
+#introText,
+#timelineBody,
+.resourceSection li {
   font-size: var(--text);
   line-height: 1.5;
   color: #FFFFFF;
@@ -66,7 +77,6 @@ a-scene, canvas {
   margin-top: 16px;
 }
 
-#storyProgress,
 #timelineProgress {
   font-size: 13px;
   color: #FFFFFF;
@@ -84,6 +94,7 @@ a-scene, canvas {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-top: 16px;
 }
 
 button {
@@ -110,6 +121,56 @@ button:focus-visible {
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Small AR control in bottom right */
+#arControls {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+/* Timeline modal */
+#timelineModal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(70, 86, 108, 0.72); /* blue-gray dim */
+  pointer-events: auto;
+}
+
+#timelineCard {
+  width: 90vw;
+  max-width: 1100px;
+  height: 60vh;
+  background: rgba(12,12,12,0.97);
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#timelineBody {
+  flex: 1;
+  overflow-y: auto;
+  margin: 10px 0 14px;
+}
+
+.resourceSection {
+  margin-bottom: 18px;
+}
+
+.resourceSection ul {
+  margin-top: 8px;
+  padding-left: 20px;
 }
 
 .hidden {
