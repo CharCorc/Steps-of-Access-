@@ -23,8 +23,9 @@ a-scene, canvas {
 .fullscreenModal {
   position: fixed;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 18px;
   background: rgba(0,0,0,0.72);
   pointer-events: auto;
@@ -40,7 +41,8 @@ a-scene, canvas {
 }
 
 .largeCard {
-  width: min(760px, 94vw);
+  width: 90%;
+  height: 75%;
 }
 
 .scrollCard {
