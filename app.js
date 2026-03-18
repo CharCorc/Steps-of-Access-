@@ -1,82 +1,177 @@
-alert("app.js loaded"); //for debugging
+window.addEventListener("DOMContentLoaded", () => {
+  const textSize = document.getElementById("textSize");
 
-const bodyText = document.getElementById("bodyText");
-const textSize = document.getElementById("textSize");
-const startBtn = document.getElementById("startBtn");
-const skipBtn = document.getElementById("skipBtn");
-const timelineEl = document.getElementById("timeline");
+  const welcomeModal = document.getElementById("welcomeModal");
+  const storyModal = document.getElementById("storyModal");
+  const timelineModal = document.getElementById("timelineModal");
 
-const overlayPlane = document.getElementById("overlayPlane");
+  const startExperienceBtn = document.getElementById("startExperienceBtn");
 
-// Simple state
-let hasStarted = false;
+  const storyTitle = document.getElementById("storyTitle");
+  const storyBody = document.getElementById("storyBody");
+  const storyProgress = document.getElementById("storyProgress");
+  const storyBackBtn = document.getElementById("storyBackBtn");
+  const storyNextBtn = document.getElementById("storyNextBtn");
+  const skipToTimelineBtn = document.getElementById("skipToTimelineBtn");
 
-textSize.addEventListener("input", () => {
-  document.documentElement.style.setProperty("--text", `${textSize.value}px`);
-});
+  const timelineTitle = document.getElementById("timelineTitle");
+  const timelineBody = document.getElementById("timelineBody");
+  const timelineProgress = document.getElementById("timelineProgress");
+  const timelineBackBtn = document.getElementById("timelineBackBtn");
+  const timelineNextBtn = document.getElementById("timelineNextBtn");
 
-const timelineItems = [
-  { year: "1990", title: "Capitol Crawl", text: "Activists crawl up the U.S. Capitol steps, making architectural exclusion visible." },
-  { year: "1990", title: "ADA Signed", text: "The Americans with Disabilities Act becomes law (a milestone, not an endpoint)." },
-  { year: "2008", title: "ADAAA", text: "ADA Amendments Act expands protections and clarifies coverage." },
-  { year: "Today", title: "Access is ongoing", text: "Campus resources and local advocacy connect policy to lived space." },
-];
+  const sceneEl = document.getElementById("scene");
 
-function renderTimeline() {
-  timelineEl.classList.remove("hidden");
-  timelineEl.innerHTML = `
-    <h2 style="margin:0 0 8px; font-size:18px;">Timeline</h2>
-    <div style="display:grid; gap:10px;">
-      ${timelineItems.map(item => `
-        <div style="border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:10px;">
-          <div style="opacity:0.9; font-size:13px;">${item.year}</div>
-          <div style="font-weight:700; margin:2px 0 6px;">${item.title}</div>
-          <div style="font-size: var(--text); line-height:1.35;">${item.text}</div>
-        </div>
-      `).join("")}
-    </div>
-  `;
-}
-
-async function fadePlane(toOpacity, ms = 900) {
-  const from = parseFloat(overlayPlane.getAttribute("material").opacity || "0");
-  const start = performance.now();
-
-  return new Promise((resolve) => {
-    function tick(t) {
-      const p = Math.min(1, (t - start) / ms);
-      const val = from + (toOpacity - from) * p;
-      overlayPlane.setAttribute("material", `transparent: true; opacity: ${val.toFixed(3)};`);
-      if (p < 1) requestAnimationFrame(tick);
-      else resolve();
+  const storyScreens = [
+    {
+      title: "Welcome",
+      body: "Placeholder text. This screen will introduce the experience and frame Brookings Hall as a meaningful architectural site."
+    },
+    {
+      title: "Architecture and Access",
+      body: "Placeholder text. This screen begins shifting the stairs from campus architecture. ~Portal Effect ooooh~"
+    },
+    {
+      title: "Capitol Overlay",
+      body: "Placeholder text. This screen explains the overlay of the Capitol steps onto Brookings and introduces the Capitol Crawl."
     }
-    requestAnimationFrame(tick);
+  ];
+
+  const timelineEvents = [
+    {
+      label: "1990",
+      title: "Timeline Event",
+      body: "Placeholder text."
+    },
+    {
+      label: "1990",
+      title: "Timeline Event",
+      body: "Placeholder text."
+    },
+     {
+      label: "YEAR",
+      title: "Timeline Event",
+      body: "Placeholder text."
+    },
+    {
+      label: "2008",
+      title: "Timeline Event ",
+      body: "Placeholder text."
+    },
+    {
+      label: "Today",
+      title: "Timeline Event",
+      body: "Placeholder text."
+    }
+  ];
+
+  let storyIndex = 0;
+  let timelineIndex = 0;
+  let arStarted = false;
+
+  textSize.addEventListener("input", () => {
+    document.documentElement.style.setProperty("--text", `${textSize.value}px`);
   });
-}
 
-async function runSequence() {
-  hasStarted = true;
-  bodyText.textContent = "Find the marker. When it locks on, the Capitol steps will overlay Brookings.";
+  function showWelcome() {
+    welcomeModal.classList.remove("hidden");
+    storyModal.classList.add("hidden");
+    timelineModal.classList.add("hidden");
+  }
 
-  // Wait a beat, then fade in the overlay
-  await new Promise(r => setTimeout(r, 600));
-  await fadePlane(1.0, 1200);
+  function showStory(index = 0) {
+    storyIndex = Math.max(0, Math.min(index, storyScreens.length - 1));
+    welcomeModal.classList.add("hidden");
+    storyModal.classList.remove("hidden");
+    timelineModal.classList.add("hidden");
+    renderStory();
+  }
 
-  bodyText.textContent = "This overlay anchors the Capitol Crawl to the stairs you’re standing in front of.";
+  function showTimeline(index = 0) {
+    timelineIndex = Math.max(0, Math.min(index, timelineEvents.length - 1));
+    welcomeModal.classList.add("hidden");
+    storyModal.classList.add("hidden");
+    timelineModal.classList.remove("hidden");
+    renderTimeline();
+  }
 
-  // Hold, then show timeline
-  await new Promise(r => setTimeout(r, 1600));
-  renderTimeline();
+  function renderStory() {
+    const screen = storyScreens[storyIndex];
+    storyTitle.textContent = screen.title;
+    storyBody.textContent = screen.body;
+    storyProgress.textContent = `Screen ${storyIndex + 1} of ${storyScreens.length}`;
 
-  // Later you can fade back to Brookings (conceptual “return”)
-  // await fadePlane(0.0, 1400);
-}
+    storyBackBtn.disabled = storyIndex === 0;
+    storyNextBtn.textContent = storyIndex === storyScreens.length - 1 ? "Go to Timeline →" : "Next →";
+  }
 
-startBtn.addEventListener("click", () => {
-  if (!hasStarted) runSequence();
-});
+  function renderTimeline() {
+    const ev = timelineEvents[timelineIndex];
+    timelineTitle.textContent = `${ev.label} — ${ev.title}`;
+    timelineBody.textContent = ev.body;
+    timelineProgress.textContent = `Event ${timelineIndex + 1} of ${timelineEvents.length}`;
 
-skipBtn.addEventListener("click", () => {
-  renderTimeline();
-  bodyText.textContent = "Timeline opened. You can still view the overlay by pointing at the marker.";
+    timelineBackBtn.disabled = timelineIndex === 0;
+    timelineNextBtn.textContent = timelineIndex === timelineEvents.length - 1 ? "Finish" : "Next →";
+  }
+
+  async function startARIfPossible() {
+    if (arStarted) return;
+    try {
+      const mindar = sceneEl.systems["mindar-image-system"];
+      if (mindar) {
+        await mindar.start();
+        arStarted = true;
+      }
+    } catch (err) {
+      console.error("AR start failed:", err);
+    }
+  }
+
+  startExperienceBtn.addEventListener("click", async () => {
+    await startARIfPossible();
+    showStory(0);
+  });
+
+  storyBackBtn.addEventListener("click", () => {
+    if (storyIndex > 0) {
+      storyIndex -= 1;
+      renderStory();
+    } else {
+      showWelcome();
+    }
+  });
+
+  storyNextBtn.addEventListener("click", () => {
+    if (storyIndex < storyScreens.length - 1) {
+      storyIndex += 1;
+      renderStory();
+    } else {
+      showTimeline(0);
+    }
+  });
+
+  skipToTimelineBtn.addEventListener("click", () => {
+    showTimeline(0);
+  });
+
+  timelineBackBtn.addEventListener("click", () => {
+    if (timelineIndex > 0) {
+      timelineIndex -= 1;
+      renderTimeline();
+    } else {
+      showStory(storyScreens.length - 1);
+    }
+  });
+
+  timelineNextBtn.addEventListener("click", () => {
+    if (timelineIndex < timelineEvents.length - 1) {
+      timelineIndex += 1;
+      renderTimeline();
+    } else {
+      showWelcome();
+    }
+  });
+
+  showWelcome();
 });

@@ -19,10 +19,12 @@
 <body>
   <!-- Accessible UI overlay -->
   <div id="ui">
-    <div id="card">
+  <!-- Welcome Screen -->
+  <div id="welcomeModal" class="fullscreenModal">
+    <div class="modalCard">
       <h1>Steps of Access</h1>
-      <p id="bodyText">
-        Point your camera at the marker near the steps to begin.
+      <p id="welcomeText">
+        This AR experience connects the history of the Capitol Crawl to the steps of Brookings Hall.
       </p>
 
       <div class="row">
@@ -30,23 +32,61 @@
         <input id="textSize" type="range" min="16" max="26" value="18" />
       </div>
 
-      <div class="row">
-        <button id="startBtn">Start</button>
-        <button id="skipBtn" class="secondary">Skip to timeline</button>
+      <div class="btnRow">
+        <button id="startExperienceBtn">Start</button>
       </div>
     </div>
-
-    <div id="timeline" class="hidden" aria-live="polite"></div>
   </div>
 
+  <!-- Story Screen -->
+  <div id="storyModal" class="fullscreenModal hidden">
+    <div class="modalCard">
+      <div class="modalHeader">
+        <h2 id="storyTitle">Story Title</h2>
+      </div>
+
+      <p id="storyBody"></p>
+
+      <div class="modalFooter">
+        <div id="storyProgress"></div>
+        <div class="btnRow">
+          <button id="storyBackBtn" class="secondary">← Back</button>
+          <button id="skipToTimelineBtn" class="secondary">Skip to Timeline</button>
+          <button id="storyNextBtn">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Screen -->
+  <div id="timelineModal" class="fullscreenModal hidden" role="dialog" aria-modal="true" aria-labelledby="timelineTitle">
+    <div class="modalCard">
+      <div class="modalHeader">
+        <h2 id="timelineTitle">1990 — Timeline Event</h2>
+      </div>
+
+      <p id="timelineBody"></p>
+
+      <div class="modalFooter">
+        <div id="timelineProgress"></div>
+        <div class="btnRow">
+          <button id="timelineBackBtn" class="secondary">← Back</button>
+          <button id="timelineNextBtn">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- AR Scene -->
-  <a-scene
-    mindar-image="imageTargetSrc: targets/brookings.mind; autoStart: true;"
-    color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights: true"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: true"
-  >
+<a-scene
+  id="scene"
+  mindar-image="imageTargetSrc: targets/brookings.mind; autoStart: false; debugUIEnabled: true;"
+  color-space="sRGB"
+  renderer="colorManagement: true, physicallyCorrectLights: true"
+  vr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: false"
+>
     <a-assets>
       <!-- Replace with your own images -->
       <img id="capitolSteps" src="assets/capitol-steps.jpg" />

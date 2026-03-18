@@ -1,47 +1,11 @@
 :root { --text: 18px; }
 
-body { margin: 0; font-family: system-ui, -apple-system, Arial, sans-serif; }
-#ui {
-  position: fixed; inset: 0;
-  pointer-events: none;
-  display: flex; align-items: flex-end; justify-content: center;
-  padding: 16px;
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
 }
-#card {
-  pointer-events: auto;
-  width: min(720px, 94vw);
-  background: rgba(0,0,0,0.65);
-  color: white;
-  border-radius: 18px;
-  padding: 16px 16px 12px;
-  backdrop-filter: blur(8px);
-}
-#card h1 { margin: 0 0 6px; font-size: 22px; }
-#bodyText { margin: 0 0 12px; font-size: var(--text); line-height: 1.35; }
 
-.row { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
-.row label { font-size: 14px; opacity: 0.9; min-width: 70px; }
-
-button {
-  pointer-events: auto;
-  border: 0; border-radius: 12px;
-  padding: 10px 12px;
-  background: white; color: black;
-  font-weight: 600;
-}
-button.secondary { background: rgba(255,255,255,0.18); color: white; }
-
-#timeline {
-  pointer-events: auto;
-  width: min(720px, 94vw);
-  margin-top: 10px;
-  background: rgba(0,0,0,0.72);
-  color: white;
-  border-radius: 18px;
-  padding: 14px;
-}
-.hidden { display: none; }
-
+/* Keep AR scene behind UI */
 a-scene, canvas {
   position: fixed !important;
   inset: 0 !important;
@@ -49,5 +13,105 @@ a-scene, canvas {
 }
 
 #ui {
-  z-index: 9999 !important;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.fullscreenModal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.72);
+  pointer-events: auto;
+}
+
+.modalCard {
+  width: min(760px, 94vw);
+  background: rgba(10,10,10,0.96);
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+}
+
+.modalCard h1,
+.modalCard h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#welcomeText,
+#storyBody,
+#timelineBody {
+  font-size: var(--text);
+  line-height: 1.5;
+  color: #FFFFFF;
+}
+
+.modalHeader {
+  margin-bottom: 10px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+#storyProgress,
+#timelineProgress {
+  font-size: 13px;
+  color: #FFFFFF;
+  opacity: 0.92;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.btnRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: rgba(255,255,255,0.18);
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.28);
+}
+
+button:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
 }
