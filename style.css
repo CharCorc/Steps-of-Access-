@@ -178,3 +178,30 @@ button:disabled {
 .hidden {
   display: none !important;
 }
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.audioBtn {
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgba(255,255,255,0.18);
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.audioBtn:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 3px;
+}

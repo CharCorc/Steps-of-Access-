@@ -21,6 +21,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const resourcesBackBtn = document.getElementById("resourcesBackBtn");
   const resourcesRestartBtn = document.getElementById("resourcesRestartBtn");
 
+  const playIntroAudioBtn = document.getElementById("playIntroAudioBtn");
+  const playTimelineAudioBtn = document.getElementById("playTimelineAudioBtn");
+  const playResourcesAudioBtn = document.getElementById("playResourcesAudioBtn");
+
+
+
   const sceneEl = document.getElementById("scene");
 
   const timelineEvents = [
@@ -49,11 +55,34 @@ window.addEventListener("DOMContentLoaded", () => {
   let timelineIndex = 0;
   let arStarted = false;
 
+  function stopSpeech() {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  function speakText(text) {
+    if (!("speechSynthesis" in window)) {
+      console.warn("Speech synthesis is not supported in this browser.");
+      return;
+    }
+
+    stopSpeech();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    window.speechSynthesis.speak(utterance);
+  }
+
   textSize.addEventListener("input", () => {
     document.documentElement.style.setProperty("--text", `${textSize.value}px`);
   });
 
   function hideAllOverlays() {
+    stopSpeech();
     welcomeModal.classList.add("hidden");
     introModal.classList.add("hidden");
     arControls.classList.add("hidden");
@@ -135,6 +164,31 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       showARView();
     }
+  });
+
+  playIntroAudioBtn.addEventListener("click", () => {
+    const introText = document.getElementById("introText").textContent;
+    speakText(`Introduction. ${introText}`);
+  });
+
+  playTimelineAudioBtn.addEventListener("click", () => {
+    const ev = timelineEvents[timelineIndex];
+    speakText(`Timeline. ${ev.label}. ${ev.title}. ${ev.body}`);
+  });
+
+  playResourcesAudioBtn.addEventListener("click", () => {
+    const academicItems = Array.from(document.querySelectorAll("#academicList li")).map(li => li.textContent).join(". ");
+    const mediaItems = Array.from(document.querySelectorAll("#mediaList li")).map(li => li.textContent).join(". ");
+    const campusItems = Array.from(document.querySelectorAll("#campusList li")).map(li => li.textContent).join(". ");
+
+    const fullText = `
+    Resources page.
+    Academic papers. ${academicItems}.
+    Media. ${mediaItems}.
+    On campus resources. ${campusItems}.
+  `;
+
+    speakText(fullText);
   });
 
   timelineNextBtn.addEventListener("click", () => {

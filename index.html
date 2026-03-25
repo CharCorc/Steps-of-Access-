@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,114 +19,120 @@
 
 <body>
   <!-- Accessible UI overlay -->
-<div id="ui">
-  <!-- Welcome Screen -->
-  <div id="welcomeModal" class="fullscreenModal">
-    <div class="modalCard largeCard">
-      <h1>Steps of Access</h1>
-      <p id="welcomeText">
-        Steps of Access is an augmented reality experience staged on the steps of Brookings Hall. It connects this campus landmark to the history of the Capitol Crawl and the ongoing struggle for disability access.
-      </p>
+  <div id="ui">
+    <!-- Welcome Screen -->
+    <div id="welcomeModal" class="fullscreenModal">
+      <div class="modalCard largeCard">
+        <div class="pageHeader">
+          <h2>Introduction</h2>
+          <button id="playIntroAudioBtn" class="audioBtn" aria-label="Play narrated introduction">🔊</button>
+        </div>
 
-      <div class="row">
-        <label for="textSize">Text size</label>
-        <input id="textSize" type="range" min="16" max="26" value="18" />
-      </div>
+        <p id="introText">
+          This experience overlays the steps of the U.S. Capitol onto Brookings Hall, placing the Capitol Crawl into a
+          local architectural setting. Rather than reenacting disability, it focuses on public space, exclusion, and the
+          long history of disability rights activism.
+        </p>
 
-      <div class="btnRow">
-        <button id="welcomeNextBtn">Start</button>
-      </div>
-    </div>
-  </div>
+        <div class="row">
+          <label for="textSize">Text size</label>
+          <input id="textSize" type="range" min="16" max="26" value="18" />
+        </div>
 
-  <!-- Introduction Screen -->
-  <div id="introModal" class="fullscreenModal hidden">
-    <div class="modalCard largeCard">
-      <h2>Introduction</h2>
-      <p id="introText">
-        This experience overlays the steps of the U.S. Capitol onto Brookings Hall, placing the Capitol Crawl into a local architectural setting. Rather than reenacting disability, it focuses on public space, exclusion, and the long history of disability rights activism.
-      </p>
-
-      <div class="btnRow">
-        <button id="introBackBtn" class="secondary">← Back</button>
-        <button id="introStartBtn">Begin Experience</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Small AR Overlay -->
-  <div id="arControls" class="hidden">
-    <button id="skipToTimelineBtn">Skip to Timeline</button>
-  </div>
-
-  <!-- Timeline Modal -->
-  <div id="timelineModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="timelineTitle">
-    <div id="timelineCard">
-      <div class="modalHeader">
-        <h2 id="timelineTitle">1990 — Timeline Event</h2>
-      </div>
-
-      <p id="timelineBody"></p>
-
-      <div class="modalFooter">
-        <div id="timelineProgress"></div>
         <div class="btnRow">
-          <button id="timelineBackBtn" class="secondary">← Back</button>
-          <button id="timelineNextBtn">Next →</button>
+          <button id="welcomeNextBtn">Start</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Introduction Screen -->
+    <div id="introModal" class="fullscreenModal hidden">
+      <div class="modalCard largeCard">
+        <h2>Introduction</h2>
+        <p id="introText">
+          This experience overlays the steps of the U.S. Capitol onto Brookings Hall, placing the Capitol Crawl into a
+          local architectural setting. Rather than reenacting disability, it focuses on public space, exclusion, and the
+          long history of disability rights activism.
+        </p>
+
+        <div class="btnRow">
+          <button id="introBackBtn" class="secondary">← Back</button>
+          <button id="introStartBtn">Begin Experience</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small AR Overlay -->
+    <div id="arControls" class="hidden">
+      <button id="skipToTimelineBtn">Skip to Timeline</button>
+    </div>
+
+    <!-- Timeline Modal -->
+    <div id="timelineModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="timelineTitle">
+      <div id="timelineCard">
+        <div class="pageHeader">
+          <h2 id="timelineTitle">1990 — Timeline Event</h2>
+          <button id="playTimelineAudioBtn" class="audioBtn" aria-label="Play narrated timeline page">🔊</button>
+        </div>
+
+        <p id="timelineBody"></p>
+
+        <div class="modalFooter">
+          <div id="timelineProgress"></div>
+          <div class="btnRow">
+            <button id="timelineBackBtn" class="secondary">← Back</button>
+            <button id="timelineNextBtn">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resource Page -->
+    <div id="resourcesPage" class="fullscreenModal hidden">
+      <div class="modalCard largeCard scrollCard">
+        <div class="pageHeader">
+          <h2>Resources</h2>
+          <button id="playResourcesAudioBtn" class="audioBtn" aria-label="Play narrated resources page">🔊</button>
+        </div>
+        <div class="resourceSection">
+          <h3>Academic papers</h3>
+          <ul id="academicList">
+            <li>Placeholder paper 1</li>
+            <li>Placeholder paper 2</li>
+            <li>Placeholder paper 3</li>
+          </ul>
+        </div>
+
+        <div class="resourceSection">
+          <h3>Media</h3>
+          <ul id="mediaList">
+            <li>Placeholder media 1</li>
+            <li>Placeholder media 2</li>
+            <li>Placeholder media 3</li>
+          </ul>
+        </div>
+
+        <div class="resourceSection">
+          <h3>On campus resources</h3>
+          <ul id="campusList">
+            <li>Placeholder campus resource 1</li>
+            <li>Placeholder campus resource 2</li>
+            <li>Placeholder campus resource 3</li>
+          </ul>
+        </div>
+
+        <div class="btnRow">
+          <button id="resourcesBackBtn" class="secondary">← Back to Timeline</button>
+          <button id="resourcesRestartBtn">Restart</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Resource Page -->
-  <div id="resourcesPage" class="fullscreenModal hidden">
-    <div class="modalCard largeCard scrollCard">
-      <h2>Resources</h2>
-
-      <div class="resourceSection">
-        <h3>Academic papers</h3>
-        <ul id="academicList">
-          <li>Placeholder paper 1</li>
-          <li>Placeholder paper 2</li>
-          <li>Placeholder paper 3</li>
-        </ul>
-      </div>
-
-      <div class="resourceSection">
-        <h3>Media</h3>
-        <ul id="mediaList">
-          <li>Placeholder media 1</li>
-          <li>Placeholder media 2</li>
-          <li>Placeholder media 3</li>
-        </ul>
-      </div>
-
-      <div class="resourceSection">
-        <h3>On campus resources</h3>
-        <ul id="campusList">
-          <li>Placeholder campus resource 1</li>
-          <li>Placeholder campus resource 2</li>
-          <li>Placeholder campus resource 3</li>
-        </ul>
-      </div>
-
-      <div class="btnRow">
-        <button id="resourcesBackBtn" class="secondary">← Back to Timeline</button>
-        <button id="resourcesRestartBtn">Restart</button>
-      </div>
-    </div>
-  </div>
-</div>
-
   <!-- AR Scene -->
-<a-scene
-  id="scene"
-  mindar-image="imageTargetSrc: targets/brookings.mind; autoStart: false; debugUIEnabled: true;"
-  color-space="sRGB"
-  renderer="colorManagement: true, physicallyCorrectLights: true"
-  vr-mode-ui="enabled: false"
-  device-orientation-permission-ui="enabled: false"
->
+  <a-scene id="scene" mindar-image="imageTargetSrc: targets/brookings.mind; autoStart: false; debugUIEnabled: true;"
+    color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
     <a-assets>
       <!-- Replace with your own images -->
       <img id="capitolSteps" src="assets/capitol-steps.jpg" />
@@ -137,17 +144,12 @@
     <!-- Anchor content to the tracked image -->
     <a-entity id="anchor" mindar-image-target="targetIndex: 0">
       <!-- A “portal” plane that we can fade in/out -->
-      <a-plane
-        id="overlayPlane"
-        src="#capitolSteps"
-        position="0 0 0"
-        height="1.2"
-        width="1.8"
-        material="transparent: true; opacity: 0.0;"
-      ></a-plane>
+      <a-plane id="overlayPlane" src="#capitolSteps" position="0 0 0" height="1.2" width="1.8"
+        material="transparent: true; opacity: 0.0;"></a-plane>
     </a-entity>
   </a-scene>
 
   <script src="app.js"></script>
 </body>
+
 </html>
