@@ -1,0 +1,207 @@
+:root { --text: 18px; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* Keep AR scene behind UI */
+a-scene, canvas {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+#ui {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* Fullscreen overlays */
+.fullscreenModal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.72);
+  pointer-events: auto;
+}
+
+.modalCard {
+  background: rgba(10,10,10,0.96);
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+}
+
+.largeCard {
+  width: 90%;
+  height: 85%;
+}
+
+.scrollCard {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modalCard h1,
+.modalCard h2,
+.modalCard h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#welcomeText,
+#introText,
+#timelineBody,
+.resourceSection li {
+  font-size: var(--text);
+  line-height: 1.5;
+  color: #FFFFFF;
+}
+
+.modalHeader {
+  margin-bottom: 10px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+#timelineProgress {
+  font-size: 13px;
+  color: #FFFFFF;
+  opacity: 0.92;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.btnRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: rgba(255,255,255,0.18);
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.28);
+}
+
+button:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Small AR control in bottom right */
+#arControls {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+/* Timeline modal */
+#timelineModal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(70, 86, 108, 0.72); /* blue-gray dim */
+  pointer-events: auto;
+}
+
+#timelineCard {
+  width: 90vw;
+  max-width: 1100px;
+  height: 60vh;
+  background: rgba(12,12,12,0.97);
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#timelineBody {
+  flex: 1;
+  overflow-y: auto;
+  margin: 10px 0 14px;
+}
+
+.resourceSection {
+  margin-bottom: 18px;
+}
+
+.resourceSection ul {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.audioBtn {
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgba(255,255,255,0.18);
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.audioBtn:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 3px;
+}
