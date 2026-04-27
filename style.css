@@ -32,8 +32,8 @@ body {
 }
 
 /* ─── TEXT SIZE ─── */
-body.text-lg  .scalable { font-size: 1.1rem !important; }
-body.text-xl  .scalable { font-size: 1.25rem !important; }
+body.text-lg  .scalable { font-size: 1.5rem !important; }
+body.text-xl  .scalable { font-size: 2rem !important; }
 
 /* ─── PAGES ─── */
 .page {
@@ -215,7 +215,7 @@ body.text-xl  .scalable { font-size: 1.25rem !important; }
   color: var(--stone);
   border-radius: 10px;
   padding: 2.25rem 2.25rem 1.75rem;
-  max-width: 540px;
+  max-width: 750px;
   width: 100%;
   border-top: 4px solid var(--rust);
   max-height: 80vh;
@@ -503,6 +503,32 @@ body.text-xl  .scalable { font-size: 1.25rem !important; }
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+#mindar-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#mindar-scene canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.camera-hint,
+.ar-brackets,
+.subtitles-caption,
+.ar-panel {
+  z-index: 20;
+}
+
+.ar-panel {
+  z-index: 30;
 }
 
 /* AR targeting brackets */

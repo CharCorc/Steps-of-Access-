@@ -1,418 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Steps of Access — an augmented reality disability rights experience on Brookings Hall, Washington University in St. Louis." />
+  <meta name="description"
+    content="Steps of Access — an augmented reality disability rights experience on Brookings Hall, Washington University in St. Louis." />
   <title>Steps of Access</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      ACCESSIBILITY BAR  (always visible)
 ══════════════════════════════════════════ -->
-<header id="a11y-bar" role="banner">
-  <span class="brand">Steps of Access</span>
-  <div class="a11y-controls">
-    <div class="text-size-group" aria-label="Text size">
-      <button class="ts-btn active" data-size="normal" aria-label="Normal text size">A</button>
-      <button class="ts-btn"        data-size="lg"     aria-label="Large text size">A+</button>
-      <button class="ts-btn"        data-size="xl"     aria-label="Extra-large text size">A++</button>
+  <header id="a11y-bar" role="banner">
+    <span class="brand">Steps of Access</span>
+    <div class="a11y-controls">
+      <div class="text-size-group" aria-label="Text size">
+        <button class="ts-btn active" data-size="normal" aria-label="Normal text size">A</button>
+        <button class="ts-btn" data-size="lg" aria-label="Large text size">A+</button>
+        <button class="ts-btn" data-size="xl" aria-label="Extra-large text size">A++</button>
+      </div>
+      <button class="a11y-btn" id="tts-bar-btn" onclick="toggleTTS()" aria-label="Read page aloud">Read Aloud</button>
     </div>
-    <button class="a11y-btn" id="tts-bar-btn" onclick="toggleTTS()" aria-label="Read page aloud">Read Aloud</button>
-  </div>
-</header>
+  </header>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      PAGE 1 — WELCOME
 ══════════════════════════════════════════ -->
-<main class="page active" id="page-welcome" aria-label="Welcome">
+  <main class="page active" id="page-welcome" aria-label="Welcome">
 
-  <div class="welcome-content">
-    <span class="welcome-eyebrow">Washington University in St. Louis</span>
-    <h1 class="welcome-title">Steps of<br>Access</h1>
-    <p class="welcome-subtitle">An augmented reality experience<br>on Brookings Hall</p>
-    <div class="steps-deco" aria-hidden="true">
-      <div class="step-seg"></div>
-      <div class="step-seg"></div>
-      <div class="step-seg"></div>
-      <div class="step-seg"></div>
-    </div>
-  </div>
-
-  <!-- Welcome modal -->
-  <div class="modal-backdrop" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-heading">
-    <div class="modal-box">
-      <span class="modal-eyebrow">Welcome</span>
-      <h2 class="modal-title" id="welcome-heading">Steps of Access</h2>
-
-      <div class="modal-body scalable" id="welcome-text">
-        <p>This experience overlays the steps of the U.S. Capitol onto Brookings Hall, placing the Capitol Crawl into a local architectural setting. Rather than reenacting disability, it focuses on public space, exclusion, and the long history of disability rights activism.</p>
-        <p>Point your device at the Brookings Hall steps when prompted to begin the augmented reality overlay.</p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="modal-actions">
-        <button class="btn-primary" onclick="goToPage('page-background')" aria-label="Begin the experience">
-          Begin Experience
-        </button>
-        <button class="btn-ghost" onclick="goToPage('page-timeline')" aria-label="Skip to the disability rights timeline">
-          Skip to Timeline →
-        </button>
-      </div>
-    </div>
-  </div>
-
-</main>
-
-
-<!-- ══════════════════════════════════════════
-     PAGE 2 — BACKGROUND
-══════════════════════════════════════════ -->
-<section class="page" id="page-background" aria-label="Background on the Capitol Crawl">
-
-  <div class="background-inner">
-    <!-- Text column -->
-    <div>
-      <span class="section-eyebrow">March 12, 1990</span>
-      <h2 class="section-heading">The Capitol Crawl</h2>
-      <div class="section-body scalable" id="background-text">
-        <p>On March 12, 1990, more than a thousand disability rights activists gathered on the west lawn of the U.S. Capitol to demand the passage of the Americans with Disabilities Act.</p>
-        <p>Led by Jennifer Keelan, an eight-year-old with cerebral palsy, dozens of protesters left their wheelchairs, crutches, and mobility aids at the base of the Capitol steps and crawled up the marble staircase on their hands and knees — exposing in one undeniable image what inaccessible architecture means in practice.</p>
-        <p>The 83 steps that separated them from the doors of Congress became a symbol of the barriers that had long excluded disabled people from public life. Congress passed the ADA four months later.</p>
-        <p>While the protest received media coverage at the time, it is rarely taught alongside other civil rights milestones. This experience is an effort to change that.</p>
+    <div class="welcome-content">
+      <span class="welcome-eyebrow">Washington University in St. Louis</span>
+      <h1 class="welcome-title">Steps of<br>Access</h1>
+      <p class="welcome-subtitle">An augmented reality experience<br>on Brookings Hall</p>
+      <div class="steps-deco" aria-hidden="true">
+        <div class="step-seg"></div>
+        <div class="step-seg"></div>
+        <div class="step-seg"></div>
+        <div class="step-seg"></div>
       </div>
     </div>
 
-    <!-- Image column -->
-    <div class="bg-image-col">
-      <div class="archival-frame" aria-label="Archival photograph placeholder">
-        <img src="images/one.png" alt="Capitol Crawl protest, March 1990" onload="this.style.display='block'" onerror="this.style.display='none'" />
-        <div class="frame-fallback">
-          <span class="frame-label">Archival Image</span>
+    <!-- Welcome modal -->
+    <div class="modal-backdrop" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-heading">
+      <div class="modal-box">
+        <span class="modal-eyebrow">Welcome</span>
+        <h2 class="modal-title" id="welcome-heading">Steps of Access</h2>
+
+        <div class="modal-body scalable" id="welcome-text">
+          <p>This experience overlays the steps of the U.S. Capitol onto Brookings Hall, placing the Capitol Crawl into
+            a local architectural setting. Rather than reenacting disability, it focuses on public space, exclusion, and
+            the long history of disability rights activism.</p>
+          <p>Point your device at the Brookings Hall steps when prompted to begin the augmented reality overlay.</p>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <div class="modal-actions">
+          <button class="btn-primary" onclick="goToPage('page-background')" aria-label="Begin the experience">
+            Begin Experience
+          </button>
+          <button class="btn-ghost" onclick="goToPage('page-timeline')"
+            aria-label="Skip to the disability rights timeline">
+            Skip to Timeline →
+          </button>
         </div>
       </div>
-      <p class="archival-caption">Capitol Crawl, Washington D.C., March 12, 1990</p>
     </div>
-  </div>
 
-  <div class="bg-footer">
-    <button class="btn-primary" onclick="startPortal()" aria-label="Enter the augmented reality experience">
-      Enter AR Experience →
-    </button>
-  </div>
-
-</section>
+  </main>
 
 
-<!-- ══════════════════════════════════════════
-     PORTAL TRANSITION
+  <!-- ══════════════════════════════════════════
+     PAGE 2 — BACKGROUND
 ══════════════════════════════════════════ -->
-<div id="portal" role="status" aria-live="polite" aria-label="Loading augmented reality overlay">
-  <div class="portal-ring" aria-hidden="true"></div>
-  <p class="portal-text">Aligning overlay…</p>
-</div>
+  <section class="page" id="page-background" aria-label="Background on the Capitol Crawl">
 
+    <div class="background-inner">
+      <!-- Text column -->
+      <div>
+        <span class="section-eyebrow">March 12, 1990</span>
+        <h2 class="section-heading">The Capitol Crawl</h2>
+        <div class="section-body scalable" id="background-text">
+          <p>On March 12, 1990, more than a thousand disability rights activists gathered on the west lawn of the U.S.
+            Capitol to demand the passage of the Americans with Disabilities Act.</p>
+          <p>Led by Jennifer Keelan, an eight-year-old with cerebral palsy, dozens of protesters left their wheelchairs,
+            crutches, and mobility aids at the base of the Capitol steps and crawled up the marble staircase on their
+            hands and knees — exposing in one undeniable image what inaccessible architecture means in practice.</p>
+          <p>The 83 steps that separated them from the doors of Congress became a symbol of the barriers that had long
+            excluded disabled people from public life. Congress passed the ADA four months later.</p>
+          <p>While the protest received media coverage at the time, it is rarely taught alongside other civil rights
+            milestones. This experience is an effort to change that.</p>
+        </div>
+      </div>
 
-<!-- ══════════════════════════════════════════
-     PAGE 3 — AR EXPERIENCE
-══════════════════════════════════════════ -->
-<section class="page" id="page-ar" aria-label="Augmented reality experience">
-
-  <div class="ar-camera" aria-label="Camera viewport">
-
-    <!-- Camera placeholder text (fades after first slide advance) -->
-    <div class="camera-hint" id="camera-hint" aria-hidden="true">
-      <div class="camera-icon">📷</div>
-      <p class="camera-hint-text">Point camera at Brookings steps</p>
-      <p style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.12);margin-top:4px;letter-spacing:0.08em;">target: targets/Brookings.mind</p>
-    </div>
-
-    <!-- Targeting brackets -->
-    <div class="ar-brackets" aria-hidden="true">
-      <div class="bracket bracket-tl"></div>
-      <div class="bracket bracket-tr"></div>
-      <div class="bracket bracket-bl"></div>
-      <div class="bracket bracket-br"></div>
-    </div>
-
-    <!-- Overlay image area -->
-    <div class="ar-overlay-area" aria-hidden="true">
-      <img
-        id="ar-overlay-img"
-        class="ar-overlay-img"
-        src=""
-        alt="Capitol steps AR overlay"
-      />
-      <div class="ar-overlay-placeholder" id="ar-overlay-placeholder">
-        <span id="ar-placeholder-file">images/capitol.png</span>
-        <span style="font-size:8px;opacity:0.6;">AR overlay</span>
+      <!-- Image column -->
+      <div class="bg-image-col">
+        <div class="archival-frame" aria-label="Archival photograph placeholder">
+          <img src="images/full_image.jpg" alt="Capitol Crawl protest, March 1990" onload="this.style.display='block'"
+            onerror="this.style.display='none'" />
+          <div class="frame-fallback">
+            <span class="frame-label">Archival Image</span>
+          </div>
+        </div>
+        <p class="archival-caption">Capitol Crawl, Washington D.C., March 12, 1990</p>
       </div>
     </div>
 
-    <!-- Subtitles -->
-    <div class="subtitles-caption" id="ar-subtitle" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="bg-footer">
+      <button class="btn-primary" onclick="startPortal()" aria-label="Enter the augmented reality experience">
+        Enter AR Experience →
+      </button>
+    </div>
 
-    <!-- Narrative panel -->
-    <div class="ar-panel">
+  </section>
 
-      <!-- Progress pips -->
-      <div class="ar-progress" id="ar-progress" role="progressbar" aria-label="Slide progress"></div>
 
-      <p class="ar-eyebrow" id="ar-eyebrow"></p>
-      <p class="ar-narrative-text scalable" id="ar-narrative-text"></p>
+  <!-- ══════════════════════════════════════════
+     PORTAL TRANSITION
+══════════════════════════════════════════ -->
+  <div id="portal" role="status" aria-live="polite" aria-label="Loading augmented reality overlay">
+    <div class="portal-ring" aria-hidden="true"></div>
+    <p class="portal-text">Aligning overlay…</p>
+  </div>
 
-      <div class="ar-controls-row">
-        <div class="ar-left-controls">
-          <!-- Subtitles toggle -->
-          <button
-            class="subtitles-btn"
-            id="subtitles-btn"
-            onclick="toggleSubtitles()"
-            aria-pressed="false"
-            aria-label="Toggle subtitles"
-          >
-            <span aria-hidden="true">CC</span> Subtitles
-          </button>
 
-          <!-- Audio indicator -->
-          <div class="audio-indicator" id="audio-indicator" aria-live="polite" aria-label="Audio playing">
-            <div class="audio-bar" aria-hidden="true">
-              <span></span><span></span><span></span><span></span>
+  <!-- ══════════════════════════════════════════
+     PAGE 3 — AR EXPERIENCE
+══════════════════════════════════════════ -->
+  <section class="page" id="page-ar" aria-label="Augmented reality experience">
+
+    <div class="ar-camera" aria-label="Camera viewport">
+
+      <!-- Camera placeholder text (fades after first slide advance) -->
+      <div class="camera-hint" id="camera-hint" aria-hidden="true">
+        <div class="camera-icon">📷</div>
+        <p class="camera-hint-text">Point camera at Brookings steps</p>
+        <p
+          style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.12);margin-top:4px;letter-spacing:0.08em;">
+          target: targets/Brookings.mind</p>
+      </div>
+
+      <!-- Targeting brackets -->
+      <div class="ar-brackets" aria-hidden="true">
+        <div class="bracket bracket-tl"></div>
+        <div class="bracket bracket-tr"></div>
+        <div class="bracket bracket-bl"></div>
+        <div class="bracket bracket-br"></div>
+      </div>
+
+      <!-- Real MindAR scene -->
+      <a-scene id="mindar-scene" mindar-image="imageTargetSrc: targets/Brookings.mind; autoStart: true;" embedded
+        color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights; alpha: true"
+        vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+        <a-assets>
+          <img id="ar-slide-texture" src="images/capitol.png" />
+        </a-assets>
+
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+        <a-entity id="mindar-target" mindar-image-target="targetIndex: 0">
+          <a-image id="ar-overlay-img" src="#ar-slide-texture" position="0 0 0" width="1.4" height="1"></a-image>
+        </a-entity>
+      </a-scene>
+
+
+      <!-- Subtitles -->
+      <div class="subtitles-caption" id="ar-subtitle" role="status" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- Narrative panel -->
+      <div class="ar-panel">
+
+        <!-- Progress pips -->
+        <div class="ar-progress" id="ar-progress" role="progressbar" aria-label="Slide progress"></div>
+
+        <p class="ar-eyebrow" id="ar-eyebrow"></p>
+        <p class="ar-narrative-text scalable" id="ar-narrative-text"></p>
+
+        <div class="ar-controls-row">
+          <div class="ar-left-controls">
+            <!-- Subtitles toggle -->
+            <button class="subtitles-btn" id="subtitles-btn" onclick="toggleSubtitles()" aria-pressed="false"
+              aria-label="Toggle subtitles">
+              <span aria-hidden="true">CC</span> Subtitles
+            </button>
+
+            <!-- Audio indicator -->
+            <div class="audio-indicator" id="audio-indicator" aria-live="polite" aria-label="Audio playing">
+              <div class="audio-bar" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <span>Audio</span>
             </div>
-            <span>Audio</span>
+          </div>
+
+          <!-- Navigation -->
+          <div class="ar-nav-btns">
+            <button class="ar-nav" id="ar-back" onclick="arNav(-1)" aria-label="Previous slide" disabled>
+              ← Back
+            </button>
+            <button class="ar-nav forward" id="ar-next" aria-label="Next slide">
+              Next →
+            </button>
           </div>
         </div>
 
-        <!-- Navigation -->
-        <div class="ar-nav-btns">
-          <button class="ar-nav" id="ar-back" onclick="arNav(-1)" aria-label="Previous slide" disabled>
-            ← Back
-          </button>
-          <button class="ar-nav forward" id="ar-next" aria-label="Next slide">
-            Next →
-          </button>
-        </div>
-      </div>
+      </div><!-- /ar-panel -->
+    </div><!-- /ar-camera -->
 
-    </div><!-- /ar-panel -->
-  </div><!-- /ar-camera -->
-
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      PAGE 4 — TIMELINE
 ══════════════════════════════════════════ -->
-<section class="page" id="page-timeline" aria-label="Timeline of disability rights since the Capitol Crawl">
-  <div class="timeline-wrap">
-    <div class="timeline-header">
-      <span class="section-eyebrow">After the Crawl</span>
-      <h2 class="section-heading">Disability Rights, 1990–Present</h2>
+  <section class="page" id="page-timeline" aria-label="Timeline of disability rights since the Capitol Crawl">
+    <div class="timeline-wrap">
+      <div class="timeline-header">
+        <span class="section-eyebrow">After the Crawl</span>
+        <h2 class="section-heading">Disability Rights, 1990–Present</h2>
+      </div>
+      <div class="timeline-track" id="timeline-track" role="list" aria-label="Disability rights timeline"></div>
     </div>
-    <div class="timeline-track" id="timeline-track" role="list" aria-label="Disability rights timeline"></div>
-  </div>
 
-  <div class="tl-footer">
-    <button class="btn-primary" onclick="goToPage('page-ending')" aria-label="Continue to closing screen">
-      Continue →
-    </button>
-  </div>
-</section>
+    <div class="tl-footer">
+      <button class="btn-primary" onclick="goToPage('page-ending')" aria-label="Continue to closing screen">
+        Continue →
+      </button>
+    </div>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      PAGE 5 — ENDING
 ══════════════════════════════════════════ -->
-<section class="page" id="page-ending" aria-label="End of experience">
+  <section class="page" id="page-ending" aria-label="End of experience">
 
-  <div class="ending-wrap">
-    <span class="section-eyebrow">Experience Complete</span>
-    <h2 class="ending-title">Architecture shapes<br>who belongs.</h2>
-    <p class="ending-sub scalable">
-      The Capitol Crawl was not the end of the disability rights movement — it was one moment in an ongoing effort to redesign public life for everyone. The Brookings steps you're standing in front of are part of that same conversation.
-    </p>
+    <div class="ending-wrap">
+      <span class="section-eyebrow">Experience Complete</span>
+      <h2 class="ending-title">Architecture shapes<br>who belongs.</h2>
+      <p class="ending-sub scalable">
+        The Capitol Crawl was not the end of the disability rights movement — it was one moment in an ongoing effort to
+        redesign public life for everyone. The Brookings steps you're standing in front of are part of that same
+        conversation.
+      </p>
 
-    <div class="ending-cards">
-      <button class="ending-card" onclick="restartExperience()" aria-label="Start the experience again">
-        <div class="ec-icon" aria-hidden="true">↩</div>
-        <div class="ec-title">Start Again</div>
-        <div class="ec-desc">Return to the beginning and go through the experience once more.</div>
-      </button>
+      <div class="ending-cards">
+        <button class="ending-card" onclick="restartExperience()" aria-label="Start the experience again">
+          <div class="ec-icon" aria-hidden="true">↩</div>
+          <div class="ec-title">Start Again</div>
+          <div class="ec-desc">Return to the beginning and go through the experience once more.</div>
+        </button>
 
-      <button class="ending-card" onclick="goToPage('page-resources')" aria-label="See further resources">
-        <div class="ec-icon" aria-hidden="true">📚</div>
-        <div class="ec-title">Further Resources</div>
-        <div class="ec-desc">Narratives, academic papers, and films to continue learning.</div>
-      </button>
+        <button class="ending-card" onclick="goToPage('page-resources')" aria-label="See further resources">
+          <div class="ec-icon" aria-hidden="true">📚</div>
+          <div class="ec-title">Further Resources</div>
+          <div class="ec-desc">Narratives, academic papers, and films to continue learning.</div>
+        </button>
+      </div>
     </div>
-  </div>
 
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      PAGE 6 — RESOURCES
 ══════════════════════════════════════════ -->
-<section class="page" id="page-resources" aria-label="Further resources on disability rights">
+  <section class="page" id="page-resources" aria-label="Further resources on disability rights">
 
-  <div class="resources-wrap">
-    <div style="margin-bottom:2rem;">
-      <span class="section-eyebrow">Continue Learning</span>
-      <h2 class="section-heading">Further Resources</h2>
+    <div class="resources-wrap">
+      <div style="margin-bottom:2rem;">
+        <span class="section-eyebrow">Continue Learning</span>
+        <h2 class="section-heading">Further Resources</h2>
+      </div>
+
+      <!-- Tabs -->
+      <div class="res-tabs" role="tablist" aria-label="Resource categories">
+        <button class="res-tab active" role="tab" aria-selected="true" aria-controls="tab-narratives"
+          onclick="switchTab('narratives', this)">Narratives &amp; Literature</button>
+        <button class="res-tab" role="tab" aria-selected="false" aria-controls="tab-academic"
+          onclick="switchTab('academic', this)">Academic Papers</button>
+        <button class="res-tab" role="tab" aria-selected="false" aria-controls="tab-films"
+          onclick="switchTab('films', this)">Films</button>
+      </div>
+
+      <!-- Panel: Narratives -->
+      <div class="res-panel active" id="tab-narratives" role="tabpanel" aria-label="Narratives and literature">
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">01</span>
+          <div>
+            <p class="res-title">Being Heumann: An Unrepentant Memoir of a Disability Rights Activist</p>
+            <p class="res-by">Judith Heumann with Kristen Joiner · 2020</p>
+            <p class="res-desc scalable">The memoir of Judith Heumann, one of the central figures of the disability
+              rights movement — from early legal battles to the passage of the ADA and beyond.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">02</span>
+          <div>
+            <p class="res-title">Sitting Pretty: The View from My Ordinary Resilient Disabled Body</p>
+            <p class="res-by">Rebekah Taussig · 2020</p>
+            <p class="res-desc scalable">A candid, essay-driven memoir examining the daily realities of living with
+              paralysis, the built environment, and public perception of disability.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">03</span>
+          <div>
+            <p class="res-title">The Disability Rights Movement: From Charity to Confrontation</p>
+            <p class="res-by">Doris Zames Fleischer &amp; Frieda Zames · 2001</p>
+            <p class="res-desc scalable">A comprehensive narrative history of the disability rights movement in the
+              United States from the mid-twentieth century through the passage and implementation of the ADA.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">04</span>
+          <div>
+            <p class="res-title">ability_WashU</p>
+            <p class="res-by">WashU Disability Advocacy · Instagram @ability_WashU</p>
+            <p class="res-desc scalable">Student-led disability advocacy and awareness on campus. Follow for information
+              on accessibility initiatives, events, and community resources at Washington University.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">05</span>
+          <div>
+            <p class="res-title">WashU Student Accessibility Map</p>
+            <p class="res-by">Disability Anthropology Course · Washington University</p>
+            <p class="res-desc scalable">A student-created map examining accessibility across the WashU campus, produced
+              through coursework in Disability Anthropology. Available through WashU Disability Services.</p>
+          </div>
+        </article>
+
+      </div><!-- /tab-narratives -->
+
+      <!-- Panel: Academic -->
+      <div class="res-panel" id="tab-academic" role="tabpanel" aria-label="Academic papers">
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">01</span>
+          <div>
+            <p class="res-title">Misfits: A Feminist Materialist Disability Concept</p>
+            <p class="res-by">Rosemarie Garland-Thomson · Hypatia, 2011</p>
+            <p class="res-desc scalable">Introduces the concept of "misfitting," arguing that disability emerges through
+              the interaction between bodies and environments rather than residing within individuals alone.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">02</span>
+          <div>
+            <p class="res-title">Building Access: Universal Design and the Politics of Disability</p>
+            <p class="res-by">Aimi Hamraie · University of Minnesota Press, 2017</p>
+            <p class="res-desc scalable">Reframes disability activism as architectural critique, examining how built
+              environments enforce power and exclusion, and how universal design offers a different vision.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">03</span>
+          <div>
+            <p class="res-title">Crawling Toward Civil Rights: News Media Coverage of Disability Activism</p>
+            <p class="res-by">Beth Haller · Cultural Diversity and the U.S. Media, 1998</p>
+            <p class="res-desc scalable">Examines how U.S. news media framed the Capitol Crawl and disability activism,
+              analyzing what coverage revealed about public understanding of disability as a civil rights issue.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">04</span>
+          <div>
+            <p class="res-title">Disability in Theory: From Social Constructionism to the New Realism of the Body</p>
+            <p class="res-by">Tobin Siebers · American Literary History, 2001</p>
+            <p class="res-desc scalable">Argues that disability must be understood as both socially constructed and
+              materially embodied, grounding the experience of disability in everyday built environments.</p>
+          </div>
+        </article>
+
+      </div><!-- /tab-academic -->
+
+      <!-- Panel: Films -->
+      <div class="res-panel" id="tab-films" role="tabpanel" aria-label="Films">
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">01</span>
+          <div>
+            <p class="res-title">Crip Camp: A Disability Revolution</p>
+            <p class="res-by">James LeBrecht &amp; Nicole Newnham · Netflix, 2020</p>
+            <p class="res-desc scalable">A documentary following teenagers at a summer camp for disabled youth who
+              became disability rights organizers — including key figures in the ADA movement. Executive produced by
+              Barack and Michelle Obama.</p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">02</span>
+          <div>
+            <p class="res-title">Lives Worth Living</p>
+            <p class="res-by">Eric Neudel · PBS American Experience, 2011</p>
+            <p class="res-desc scalable">An oral history documentary tracing the disability rights movement from the
+              post-World War II era through the signing of the ADA, featuring many of the movement's central figures.
+            </p>
+          </div>
+        </article>
+
+        <article class="res-item">
+          <span class="res-num" aria-hidden="true">03</span>
+          <div>
+            <p class="res-title">Becoming Judy</p>
+            <p class="res-by">Documentary short · Various platforms</p>
+            <p class="res-desc scalable">A short documentary profile of Judith Heumann, from denied school enrollment in
+              1950s New York to becoming one of the most influential disability rights advocates of the twentieth
+              century.</p>
+          </div>
+        </article>
+
+      </div><!-- /tab-films -->
+
+    </div><!-- /resources-wrap -->
+
+    <div class="res-footer">
+      <button class="btn-light" onclick="goToPage('page-ending')" aria-label="Go back to closing screen">← Back</button>
+      <button class="btn-primary" onclick="restartExperience()" aria-label="Start the experience again">Start
+        Again</button>
     </div>
 
-    <!-- Tabs -->
-    <div class="res-tabs" role="tablist" aria-label="Resource categories">
-      <button class="res-tab active" role="tab" aria-selected="true"  aria-controls="tab-narratives" onclick="switchTab('narratives', this)">Narratives &amp; Literature</button>
-      <button class="res-tab"        role="tab" aria-selected="false" aria-controls="tab-academic"   onclick="switchTab('academic', this)">Academic Papers</button>
-      <button class="res-tab"        role="tab" aria-selected="false" aria-controls="tab-films"      onclick="switchTab('films', this)">Films</button>
-    </div>
-
-    <!-- Panel: Narratives -->
-    <div class="res-panel active" id="tab-narratives" role="tabpanel" aria-label="Narratives and literature">
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">01</span>
-        <div>
-          <p class="res-title">Being Heumann: An Unrepentant Memoir of a Disability Rights Activist</p>
-          <p class="res-by">Judith Heumann with Kristen Joiner · 2020</p>
-          <p class="res-desc scalable">The memoir of Judith Heumann, one of the central figures of the disability rights movement — from early legal battles to the passage of the ADA and beyond.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">02</span>
-        <div>
-          <p class="res-title">Sitting Pretty: The View from My Ordinary Resilient Disabled Body</p>
-          <p class="res-by">Rebekah Taussig · 2020</p>
-          <p class="res-desc scalable">A candid, essay-driven memoir examining the daily realities of living with paralysis, the built environment, and public perception of disability.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">03</span>
-        <div>
-          <p class="res-title">The Disability Rights Movement: From Charity to Confrontation</p>
-          <p class="res-by">Doris Zames Fleischer &amp; Frieda Zames · 2001</p>
-          <p class="res-desc scalable">A comprehensive narrative history of the disability rights movement in the United States from the mid-twentieth century through the passage and implementation of the ADA.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">04</span>
-        <div>
-          <p class="res-title">ability_WashU</p>
-          <p class="res-by">WashU Disability Advocacy · Instagram @ability_WashU</p>
-          <p class="res-desc scalable">Student-led disability advocacy and awareness on campus. Follow for information on accessibility initiatives, events, and community resources at Washington University.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">05</span>
-        <div>
-          <p class="res-title">WashU Student Accessibility Map</p>
-          <p class="res-by">Disability Anthropology Course · Washington University</p>
-          <p class="res-desc scalable">A student-created map examining accessibility across the WashU campus, produced through coursework in Disability Anthropology. Available through WashU Disability Services.</p>
-        </div>
-      </article>
-
-    </div><!-- /tab-narratives -->
-
-    <!-- Panel: Academic -->
-    <div class="res-panel" id="tab-academic" role="tabpanel" aria-label="Academic papers">
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">01</span>
-        <div>
-          <p class="res-title">Misfits: A Feminist Materialist Disability Concept</p>
-          <p class="res-by">Rosemarie Garland-Thomson · Hypatia, 2011</p>
-          <p class="res-desc scalable">Introduces the concept of "misfitting," arguing that disability emerges through the interaction between bodies and environments rather than residing within individuals alone.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">02</span>
-        <div>
-          <p class="res-title">Building Access: Universal Design and the Politics of Disability</p>
-          <p class="res-by">Aimi Hamraie · University of Minnesota Press, 2017</p>
-          <p class="res-desc scalable">Reframes disability activism as architectural critique, examining how built environments enforce power and exclusion, and how universal design offers a different vision.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">03</span>
-        <div>
-          <p class="res-title">Crawling Toward Civil Rights: News Media Coverage of Disability Activism</p>
-          <p class="res-by">Beth Haller · Cultural Diversity and the U.S. Media, 1998</p>
-          <p class="res-desc scalable">Examines how U.S. news media framed the Capitol Crawl and disability activism, analyzing what coverage revealed about public understanding of disability as a civil rights issue.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">04</span>
-        <div>
-          <p class="res-title">Disability in Theory: From Social Constructionism to the New Realism of the Body</p>
-          <p class="res-by">Tobin Siebers · American Literary History, 2001</p>
-          <p class="res-desc scalable">Argues that disability must be understood as both socially constructed and materially embodied, grounding the experience of disability in everyday built environments.</p>
-        </div>
-      </article>
-
-    </div><!-- /tab-academic -->
-
-    <!-- Panel: Films -->
-    <div class="res-panel" id="tab-films" role="tabpanel" aria-label="Films">
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">01</span>
-        <div>
-          <p class="res-title">Crip Camp: A Disability Revolution</p>
-          <p class="res-by">James LeBrecht &amp; Nicole Newnham · Netflix, 2020</p>
-          <p class="res-desc scalable">A documentary following teenagers at a summer camp for disabled youth who became disability rights organizers — including key figures in the ADA movement. Executive produced by Barack and Michelle Obama.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">02</span>
-        <div>
-          <p class="res-title">Lives Worth Living</p>
-          <p class="res-by">Eric Neudel · PBS American Experience, 2011</p>
-          <p class="res-desc scalable">An oral history documentary tracing the disability rights movement from the post-World War II era through the signing of the ADA, featuring many of the movement's central figures.</p>
-        </div>
-      </article>
-
-      <article class="res-item">
-        <span class="res-num" aria-hidden="true">03</span>
-        <div>
-          <p class="res-title">Becoming Judy</p>
-          <p class="res-by">Documentary short · Various platforms</p>
-          <p class="res-desc scalable">A short documentary profile of Judith Heumann, from denied school enrollment in 1950s New York to becoming one of the most influential disability rights advocates of the twentieth century.</p>
-        </div>
-      </article>
-
-    </div><!-- /tab-films -->
-
-  </div><!-- /resources-wrap -->
-
-  <div class="res-footer">
-    <button class="btn-light" onclick="goToPage('page-ending')" aria-label="Go back to closing screen">← Back</button>
-    <button class="btn-primary" onclick="restartExperience()" aria-label="Start the experience again">Start Again</button>
-  </div>
-
-</section>
+  </section>
 
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      GLOBAL: TTS CORNER BUTTON
 ══════════════════════════════════════════ -->
-<button id="tts-corner" onclick="toggleTTS()" aria-label="Read current page aloud">
-  🔊 Read
-</button>
+  <button id="tts-corner" onclick="toggleTTS()" aria-label="Read current page aloud">
+    🔊 Read
+  </button>
 
 
-<script src="app.js"></script>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>

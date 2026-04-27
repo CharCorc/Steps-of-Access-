@@ -24,53 +24,53 @@ const state = {
 const AR_SLIDES = [
   {
     eyebrow: 'Brookings Steps · Present Day',
-    text:    'You are standing in front of Brookings Hall at Washington University. Watch as the Capitol steps are overlaid onto this space, connecting a national moment of protest to a campus you walk past every day.',
-    image:   'images/capitol.png',
+    text: 'You are standing in front of Brookings Hall at Washington University. Watch as the Capitol steps are overlaid onto this space, connecting a national moment of protest to a campus you walk past every day.',
+    image: 'images/capitol.png',
     subtitle: 'The steps of the U.S. Capitol are being overlaid onto Brookings Hall.'
   },
   {
     eyebrow: 'Capitol Crawl · March 12, 1990',
-    text:    'Over a thousand disability rights activists gathered on the west lawn of the U.S. Capitol. At the base of these 83 steps, dozens left their wheelchairs and crawled upward on their hands and knees.',
-    image:   'images/one.png',
+    text: 'Over a thousand disability rights activists gathered on the west lawn of the U.S. Capitol. At the base of these 83 steps, dozens left their wheelchairs and crawled upward on their hands and knees.',
+    image: 'images/one.png',
     subtitle: 'Activists gather at the base of the Capitol steps, March 12, 1990.',
     audioAfter: 'audio/clip1'   // play clip1 before showing this slide
   },
   {
     eyebrow: 'Jennifer Keelan Leads the Way',
-    text:    'Jennifer Keelan, eight years old and living with cerebral palsy, pulled herself up the marble steps. "I\'ll take all night if I have to," she said. Her image became the defining photograph of the protest.',
-    image:   'images/two.png',
+    text: 'Jennifer Keelan, eight years old and living with cerebral palsy, pulled herself up the marble steps. "I\'ll take all night if I have to," she said. Her image became the defining photograph of the protest.',
+    image: 'images/two.png',
     subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.'
   },
   {
     eyebrow: 'Architecture as Exclusion',
-    text:    'Every step was a physical argument. The protesters were exposing how public buildings — the spaces of democracy — had been designed without them in mind. Architecture determines who belongs.',
-    image:   'images/three.png',
+    text: 'Every step was a physical argument. The protesters were exposing how public buildings — the spaces of democracy — had been designed without them in mind. Architecture determines who belongs.',
+    image: 'images/three.png',
     subtitle: 'Protesters climb the stairs. The Capitol dome rises above them.',
     audioAfter: 'audio/clip2'
   },
   {
     eyebrow: 'The Movement Behind the Crawl',
-    text:    'The Capitol Crawl did not happen in isolation. It was the product of decades of organizing — protests, sit-ins, and legal fights — by disabled activists across the United States who refused to be excluded from civic life.',
-    image:   'images/four.png',
+    text: 'The Capitol Crawl did not happen in isolation. It was the product of decades of organizing — protests, sit-ins, and legal fights — by disabled activists across the United States who refused to be excluded from civic life.',
+    image: 'images/four.png',
     subtitle: 'Archival image: disability rights activists at an earlier protest.'
   },
   {
     eyebrow: 'A Civil Rights Story',
-    text:    'The protest received significant media coverage, but it is rarely taught alongside other civil rights milestones. Scholars argue that the disability rights movement has been systematically underrepresented in how we remember twentieth-century activism.',
-    image:   'images/five.png',
+    text: 'The protest received significant media coverage, but it is rarely taught alongside other civil rights milestones. Scholars argue that the disability rights movement has been systematically underrepresented in how we remember twentieth-century activism.',
+    image: 'images/five.png',
     subtitle: 'News cameras capture the protest on the Capitol steps.',
     audioAfter: 'audio/clip3'
   },
   {
     eyebrow: 'ADA Signed · July 26, 1990',
-    text:    'Four months after the Capitol Crawl, President George H.W. Bush signed the Americans with Disabilities Act into law — the most comprehensive disability rights legislation in U.S. history. The steps had worked.',
-    image:   'images/six.png',
+    text: 'Four months after the Capitol Crawl, President George H.W. Bush signed the Americans with Disabilities Act into law — the most comprehensive disability rights legislation in U.S. history. The steps had worked.',
+    image: 'images/six.png',
     subtitle: 'The ADA signing ceremony. Disability rights advocates stand nearby.'
   },
   {
     eyebrow: 'Returning to Brookings',
-    text:    'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation — what does it mean for a public space to be truly accessible? That question is still being answered.',
-    image:   'images/seven.png',
+    text: 'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation — what does it mean for a public space to be truly accessible? That question is still being answered.',
+    image: 'images/seven.png',
     subtitle: 'The overlay fades. Brookings Hall steps return to view.'
   }
 ];
@@ -79,38 +79,38 @@ const AR_SLIDES = [
 const TIMELINE = [
   {
     year: '1990',
-    tag:  'Legislation',
+    tag: 'Legislation',
     title: 'Americans with Disabilities Act Signed',
-    body:  'On July 26, 1990, President George H.W. Bush signed the ADA into law on the South Lawn of the White House, surrounded by disability rights advocates. The law banned discrimination in employment, public accommodations, transportation, and government services — the largest civil rights legislation since the Civil Rights Act of 1964.',
-    gold:  true
+    body: 'On July 26, 1990, President George H.W. Bush signed the ADA into law on the South Lawn of the White House, surrounded by disability rights advocates. The law banned discrimination in employment, public accommodations, transportation, and government services — the largest civil rights legislation since the Civil Rights Act of 1964.',
+    gold: true
   },
   {
     year: '1998',
-    tag:  'Digital Access',
+    tag: 'Digital Access',
     title: 'Section 508 Amendments',
-    body:  'Congress amended Section 508 of the Rehabilitation Act to require federal agencies to make their electronic and information technology accessible to people with disabilities. This extended civil rights principles into the digital sphere and set a precedent for web accessibility standards that shape online design today.',
-    gold:  false
+    body: 'Congress amended Section 508 of the Rehabilitation Act to require federal agencies to make their electronic and information technology accessible to people with disabilities. This extended civil rights principles into the digital sphere and set a precedent for web accessibility standards that shape online design today.',
+    gold: false
   },
   {
     year: '2008',
-    tag:  'ADA Update',
+    tag: 'ADA Update',
     title: 'ADA Amendments Act (ADAAA)',
-    body:  'A series of Supreme Court rulings had narrowed the ADA\'s definition of disability, limiting who could seek its protections. Congress responded with the ADAAA, broadening the definition significantly and clarifying that the law should be construed in favor of wide coverage — restoring the ADA\'s original scope.',
-    gold:  false
+    body: 'A series of Supreme Court rulings had narrowed the ADA\'s definition of disability, limiting who could seek its protections. Congress responded with the ADAAA, broadening the definition significantly and clarifying that the law should be construed in favor of wide coverage — restoring the ADA\'s original scope.',
+    gold: false
   },
   {
     year: '2010',
-    tag:  'Physical Access',
+    tag: 'Physical Access',
     title: 'ADA Standards for Accessible Design Updated',
-    body:  'The Department of Justice issued comprehensive updates to ADA accessibility standards — the first major revision in nearly twenty years. New requirements addressed recreational facilities, pools, and detailed specifications for built environments, reflecting two decades of lived experience under the original law.',
-    gold:  false
+    body: 'The Department of Justice issued comprehensive updates to ADA accessibility standards — the first major revision in nearly twenty years. New requirements addressed recreational facilities, pools, and detailed specifications for built environments, reflecting two decades of lived experience under the original law.',
+    gold: false
   },
   {
     year: 'Ongoing',
-    tag:  'Present Day',
+    tag: 'Present Day',
     title: 'The Work Continues',
-    body:  'From web accessibility litigation to fights over Medicaid funding, from campus accessibility advocacy to transportation equity, the disability rights movement remains active. The ADA was infrastructure, not an endpoint. How that infrastructure is maintained, expanded, and enforced is an ongoing civic question — one that the steps you are standing in front of are part of.',
-    gold:  true
+    body: 'From web accessibility litigation to fights over Medicaid funding, from campus accessibility advocacy to transportation equity, the disability rights movement remains active. The ADA was infrastructure, not an endpoint. How that infrastructure is maintained, expanded, and enforced is an ongoing civic question — one that the steps you are standing in front of are part of.',
+    gold: true
   }
 ];
 
@@ -222,9 +222,9 @@ function renderARSlide(withAudio) {
 
   // text
   const eyebrow = document.getElementById('ar-eyebrow');
-  const textEl   = document.getElementById('ar-narrative-text');
+  const textEl = document.getElementById('ar-narrative-text');
   if (eyebrow) eyebrow.textContent = slide.eyebrow;
-  if (textEl)  {
+  if (textEl) {
     // re-trigger animation
     textEl.style.animation = 'none';
     void textEl.offsetWidth;
@@ -232,27 +232,17 @@ function renderARSlide(withAudio) {
     textEl.textContent = slide.text;
   }
 
-  // image overlay
+  // MindAR image overlay
+  const texture = document.getElementById('ar-slide-texture');
   const img = document.getElementById('ar-overlay-img');
-  const placeholder = document.getElementById('ar-overlay-placeholder');
-  if (img) {
-    img.classList.remove('visible');
-    const newSrc = slide.image;
-    img.onload = () => img.classList.add('visible');
-    img.onerror = () => {
-      img.classList.remove('visible');
-      if (placeholder) placeholder.classList.remove('hidden');
-    };
-    img.src = newSrc;
-    if (img.complete && img.naturalWidth) {
-      img.classList.add('visible');
-      if (placeholder) placeholder.classList.add('hidden');
-    } else {
-      if (placeholder) placeholder.classList.remove('hidden');
-    }
+
+  if (texture) {
+    texture.setAttribute('src', slide.image);
   }
-  const placeholderLabel = document.getElementById('ar-placeholder-file');
-  if (placeholderLabel) placeholderLabel.textContent = slide.image;
+
+  if (img) {
+    img.setAttribute('src', slide.image);
+  }
 
   // subtitles
   const caption = document.getElementById('ar-subtitle');
@@ -265,7 +255,7 @@ function renderARSlide(withAudio) {
   const pips = document.querySelectorAll('.ar-pip');
   pips.forEach((pip, i) => {
     pip.classList.remove('done', 'active');
-    if (i < state.arSlide)  pip.classList.add('done');
+    if (i < state.arSlide) pip.classList.add('done');
     if (i === state.arSlide) pip.classList.add('active');
   });
 
@@ -308,9 +298,9 @@ function arNav(dir) {
 
 function toggleSubtitles() {
   state.subtitlesOn = !state.subtitlesOn;
-  const btn     = document.getElementById('subtitles-btn');
+  const btn = document.getElementById('subtitles-btn');
   const caption = document.getElementById('ar-subtitle');
-  if (btn)     btn.classList.toggle('on', state.subtitlesOn);
+  if (btn) btn.classList.toggle('on', state.subtitlesOn);
   if (caption) {
     caption.classList.toggle('visible', state.subtitlesOn);
     if (state.subtitlesOn) {
@@ -372,17 +362,17 @@ function setTextSize(size) {
 // ─── TTS ─────────────────────────────────────────────────────
 function getPageText() {
   const map = {
-    'page-welcome':    () => document.getElementById('welcome-text')?.innerText ?? '',
+    'page-welcome': () => document.getElementById('welcome-text')?.innerText ?? '',
     'page-background': () => document.getElementById('background-text')?.innerText ?? '',
-    'page-ar':         () => {
+    'page-ar': () => {
       const slide = AR_SLIDES[state.arSlide];
       return slide ? slide.eyebrow + '. ' + slide.text : '';
     },
-    'page-timeline':   () => Array.from(document.querySelectorAll('.tl-title, .tl-body'))
-                              .map(el => el.innerText).join('. '),
-    'page-ending':     () => document.querySelector('#page-ending .ending-sub')?.innerText ?? '',
-    'page-resources':  () => Array.from(document.querySelectorAll('.res-panel.active .res-title, .res-panel.active .res-desc'))
-                              .map(el => el.innerText).join('. ')
+    'page-timeline': () => Array.from(document.querySelectorAll('.tl-title, .tl-body'))
+      .map(el => el.innerText).join('. '),
+    'page-ending': () => document.querySelector('#page-ending .ending-sub')?.innerText ?? '',
+    'page-resources': () => Array.from(document.querySelectorAll('.res-panel.active .res-title, .res-panel.active .res-desc'))
+      .map(el => el.innerText).join('. ')
   };
   return (map[state.currentPage] ?? (() => ''))();
 }
@@ -399,7 +389,7 @@ function startTTS(text) {
   stopTTS();
   const utt = new SpeechSynthesisUtterance(text);
   utt.rate = 0.9;
-  utt.onend  = () => setTTSState(false);
+  utt.onend = () => setTTSState(false);
   utt.onerror = () => setTTSState(false);
   state.ttsUtterance = utt;
   speechSynthesis.speak(utt);
@@ -415,7 +405,7 @@ function stopTTS() {
 function setTTSState(on) {
   state.ttsActive = on;
   const corner = document.getElementById('tts-corner');
-  const barBtn  = document.getElementById('tts-bar-btn');
+  const barBtn = document.getElementById('tts-bar-btn');
   if (corner) {
     corner.classList.toggle('speaking', on);
     corner.textContent = on ? '⏹ Stop' : '🔊 Read';
@@ -430,7 +420,7 @@ function setTTSState(on) {
 document.addEventListener('keydown', e => {
   if (state.currentPage === 'page-ar') {
     if (e.key === 'ArrowRight') arNav(1);
-    if (e.key === 'ArrowLeft')  arNav(-1);
+    if (e.key === 'ArrowLeft') arNav(-1);
   }
 });
 
