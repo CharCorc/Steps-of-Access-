@@ -154,19 +154,15 @@
       </div>
 
       <!-- Real MindAR scene -->
-      <a-scene id="mindar-scene" mindar-image="imageTargetSrc: targets/Brookings.mind; autoStart: false;" embedded
-        color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights; alpha: true"
-        vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
-        <a-assets>
-          <img id="ar-slide-texture" src="images/capitol.png" />
-        </a-assets>
+      <video id="camera-feed" autoplay playsinline muted></video>
 
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-        <a-entity id="mindar-target" mindar-image-target="targetIndex: 0">
-          <a-image id="ar-overlay-img" src="#ar-slide-texture" position="0 0 0" width="1.4" height="1"></a-image>
-        </a-entity>
-      </a-scene>
+      <div class="ar-overlay-area" aria-hidden="true">
+        <img id="ar-overlay-img" class="ar-overlay-img" src="" alt="Capitol steps AR overlay" />
+        <div class="ar-overlay-placeholder" id="ar-overlay-placeholder">
+          <span id="ar-placeholder-file">images/capitol.png</span>
+          <span style="font-size:8px;opacity:0.6;">AR overlay</span>
+        </div>
+      </div>
 
 
       <!-- Subtitles -->
@@ -444,9 +440,6 @@
     🔊 Read
   </button>
 
-
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <script src="app.js"></script>
 </body>
 

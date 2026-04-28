@@ -33,20 +33,21 @@ const AR_SLIDES = [
     text: 'Over a thousand disability rights activists gathered on the west lawn of the U.S. Capitol. At the base of these 83 steps, dozens left their wheelchairs and crawled upward on their hands and knees.',
     image: 'images/one.png',
     subtitle: 'Activists gather at the base of the Capitol steps, March 12, 1990.',
-    audioAfter: 'audio/clip1'   // play clip1 before showing this slide
+    audioAfter: 'audio/ADA now.mp3'   // play clip1 before showing this slide
   },
   {
     eyebrow: 'Jennifer Keelan Leads the Way',
     text: 'Jennifer Keelan, eight years old and living with cerebral palsy, pulled herself up the marble steps. "I\'ll take all night if I have to," she said. Her image became the defining photograph of the protest.',
     image: 'images/two.png',
-    subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.'
+    subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.',
+    audioAfter: 'audio/come on jennifer.mp3'
   },
   {
     eyebrow: 'Architecture as Exclusion',
     text: 'Every step was a physical argument. The protesters were exposing how public buildings — the spaces of democracy — had been designed without them in mind. Architecture determines who belongs.',
     image: 'images/three.png',
     subtitle: 'Protesters climb the stairs. The Capitol dome rises above them.',
-    audioAfter: 'audio/clip2'
+    audioAfter: "audio/I'll take all night if I have to.mp3"
   },
   {
     eyebrow: 'The Movement Behind the Crawl',
@@ -59,7 +60,6 @@ const AR_SLIDES = [
     text: 'The protest received significant media coverage, but it is rarely taught alongside other civil rights milestones. Scholars argue that the disability rights movement has been systematically underrepresented in how we remember twentieth-century activism.',
     image: 'images/five.png',
     subtitle: 'News cameras capture the protest on the Capitol steps.',
-    audioAfter: 'audio/clip3'
   },
   {
     eyebrow: 'ADA Signed · July 26, 1990',
@@ -134,10 +134,14 @@ function createAudio(basePath) {
 }
 
 const audioClips = {
-  'audio/clip1': createAudio('audio/clip1'),
-  'audio/clip2': createAudio('audio/clip2'),
-  'audio/clip3': createAudio('audio/clip3')
+  'audio/ADA now.mp3': new Audio('audio/ADA now.mp3'),
+  'audio/come on jennifer.mp3': new Audio('audio/come on jennifer.mp3'),
+  "audio/I'll take all night if I have to.mp3": new Audio("audio/I'll take all night if I have to.mp3")
 };
+
+Object.values(audioClips).forEach(audio => {
+  audio.preload = 'auto';
+});
 
 function playAudioClip(basePath, onEnded) {
   const clip = audioClips[basePath];
@@ -190,15 +194,16 @@ function startPortal() {
   const portal = document.getElementById('portal');
   portal.classList.add('active');
   setTimeout(() => {
-  portal.classList.remove('active');
-  goToPage('page-ar');
-  state.arSlide = 0;
-  renderARSlide(false);
+    portal.classList.remove('active');
+    goToPage('page-ar');
+    state.arSlide = 0;
+    renderARSlide(false);
+    startCameraFeed();
 
-  setTimeout(() => {
-    startMindAR();
-  }, 300);
-}, 2400);
+    setTimeout(() => {
+      startMindAR();
+    }, 300);
+  }, 2400);
 }
 
 function restartExperience() {
@@ -328,6 +333,26 @@ function toggleSubtitles() {
     if (state.subtitlesOn) {
       caption.textContent = AR_SLIDES[state.arSlide]?.subtitle || '';
     }
+  }
+}
+
+async function startCameraFeed() {
+  const video = document.getElementById('camera-feed');
+  if (!video) return;
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: { ideal: 'environment' }
+      },
+      audio: false
+    });
+
+    video.srcObject = stream;
+    await video.play();
+  } catch (err) {
+    console.error('Camera could not start:', err);
+    alert('Camera access did not start. Make sure you are using HTTPS and allow camera permissions.');
   }
 }
 

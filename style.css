@@ -496,6 +496,51 @@ body.text-xl  .scalable { font-size: 2rem !important; }
 }
 .camera-hint.hidden { opacity: 0; pointer-events: none; }
 
+#camera-feed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: calc(100% - 210px);
+  object-fit: cover;
+  z-index: 1;
+  background: #000;
+}
+
+.ar-overlay-area {
+  z-index: 5;
+  top: 8%;
+  left: 8%;
+  right: 8%;
+  bottom: 42%;
+}
+
+.camera-hint,
+.ar-brackets {
+  z-index: 10;
+}
+
+.subtitles-caption {
+  z-index: 25;
+}
+
+.ar-panel {
+  z-index: 30;
+  max-height: 210px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1.25rem;
+}
+
+body.text-lg .ar-panel,
+body.text-xl .ar-panel {
+  max-height: 45vh;
+}
+
+body.text-lg #camera-feed,
+body.text-xl #camera-feed {
+  height: 55vh;
+}
+
 .camera-icon {
   width: 48px;
   height: 48px;
