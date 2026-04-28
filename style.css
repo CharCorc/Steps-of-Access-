@@ -1255,3 +1255,43 @@ body.text-xl #camera-feed {
     filter: blur(0) brightness(1);
   }
 }
+
+.ar-panel {
+  top: auto;
+  bottom: 0;
+  max-height: 32vh;
+  min-height: 0;
+  padding-top: 0.85rem;
+}
+
+#camera-feed {
+  height: 68vh;
+}
+
+.ar-overlay-area {
+  height: 68vh;
+}
+
+.ar-overlay-img.capitol-fade-out {
+  animation: capitolPortalFadeOut 10s ease forwards;
+}
+
+@keyframes capitolPortalFadeOut {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+    filter: blur(0) brightness(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(12px) brightness(1.4);
+  }
+}
+
+#subtitles-btn,
+.subtitles-btn,
+#ar-subtitle,
+.subtitles-caption {
+  display: none !important;
+}

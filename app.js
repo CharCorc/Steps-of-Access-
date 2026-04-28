@@ -71,6 +71,7 @@ const AR_SLIDES = [
   {
     eyebrow: 'Returning to Brookings',
     text: 'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation — what does it mean for a public space to be truly accessible? That question is still being answered.',
+    fadeOut: true,
     subtitle: 'The overlay fades. Brookings Hall steps return to view.'
   }
 ];
@@ -256,7 +257,11 @@ function renderARSlide(withAudio) {
       img.classList.remove('capitol-fade');
       img.classList.add('visible');
 
-      if (slide.image.includes('capitol')) {
+      img.classList.remove('capitol-fade', 'capitol-fade-out');
+
+      if (slide.fadeOut) {
+        img.classList.add('capitol-fade-out');
+      } else if (slide.image.includes('capitol')) {
         img.classList.add('capitol-fade');
       }
 
