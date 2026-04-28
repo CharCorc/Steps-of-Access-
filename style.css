@@ -1388,13 +1388,30 @@ body.text-xl .ar-narrative-text {
 }
 
 .ar-overlay-img.small-one {
-  width: 25%;
-  height: 25%;
+  width: 75%;
+  height: 75%;
   align-self: center;
 }
 
 .ar-overlay-img.small-five {
-  width: 10%;
-  height: 10%;
+  width: 90%;
+  height: 90%;
   align-self: center;
+}
+
+/* Move camera/overlay area slightly higher */
+#camera-feed {
+  object-position: center 35% !important;
+}
+
+/* Keep persistent Capitol image just below top of camera */
+.capitol-overlay-img {
+  top: 0 !important;
+  object-position: top center !important;
+  transform: translateY(-6vh);
+}
+
+/* Keep slide images high enough too */
+.ar-overlay-img {
+  object-position: top center !important;
 }
