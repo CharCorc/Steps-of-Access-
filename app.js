@@ -190,11 +190,15 @@ function startPortal() {
   const portal = document.getElementById('portal');
   portal.classList.add('active');
   setTimeout(() => {
-    portal.classList.remove('active');
-    goToPage('page-ar');
-    state.arSlide = 0;
-    renderARSlide(false);
-  }, 2400);
+  portal.classList.remove('active');
+  goToPage('page-ar');
+  state.arSlide = 0;
+  renderARSlide(false);
+
+  setTimeout(() => {
+    startMindAR();
+  }, 300);
+}, 2400);
 }
 
 function restartExperience() {
@@ -214,6 +218,24 @@ function buildARDots() {
     pip.className = 'ar-pip';
     container.appendChild(pip);
   });
+}
+
+function startMindAR() {
+  const sceneEl = document.querySelector('#mindar-scene');
+  if (!sceneEl) return;
+
+  const start = () => {
+    const arSystem = sceneEl.systems['mindar-image-system'];
+    if (arSystem) {
+      arSystem.start();
+    }
+  };
+
+  if (sceneEl.hasLoaded) {
+    start();
+  } else {
+    sceneEl.addEventListener('loaded', start, { once: true });
+  }
 }
 
 function renderARSlide(withAudio) {

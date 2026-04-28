@@ -430,6 +430,15 @@ body.text-xl  .scalable { font-size: 2rem !important; }
   z-index: 20;
 }
 
+#mindar-scene {
+  background: transparent !important;
+}
+
+#mindar-scene canvas,
+.a-canvas {
+  background: transparent !important;
+}
+
 /* ─── PORTAL TRANSITION ─── */
 #portal {
   position: fixed;
