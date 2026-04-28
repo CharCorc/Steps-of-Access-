@@ -41,6 +41,7 @@ const AR_SLIDES = [
     image: 'images/two.png',
     subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.',
     audioAfter: 'audio/come on jennifer.mp3'
+
   },
   {
     eyebrow: 'Architecture as Exclusion',
@@ -198,12 +199,7 @@ function startPortal() {
     goToPage('page-ar');
     state.arSlide = 0;
     renderARSlide(false);
-    startCameraFeed();
-
-    setTimeout(() => {
-      startMindAR();
-    }, 300);
-  }, 2400);
+    startCameraFeed();}, 2400);
 }
 
 function restartExperience() {
@@ -259,18 +255,29 @@ function renderARSlide(withAudio) {
     textEl.textContent = slide.text;
   }
 
-  // MindAR image overlay
-  const texture = document.getElementById('ar-slide-texture');
-  const img = document.getElementById('ar-overlay-img');
+// image overlay
+const img = document.getElementById('ar-overlay-img');
+const placeholder = document.getElementById('ar-overlay-placeholder');
+const placeholderLabel = document.getElementById('ar-placeholder-file');
 
-  if (texture) {
-    texture.setAttribute('src', slide.image);
-  }
+if (placeholderLabel) placeholderLabel.textContent = slide.image;
 
-  if (img) {
-    img.setAttribute('src', slide.image);
-  }
+if (img) {
+  img.classList.remove('visible');
 
+  img.onload = () => {
+    img.classList.add('visible');
+    if (placeholder) placeholder.classList.add('hidden');
+  };
+
+  img.onerror = () => {
+    console.error('Could not load AR image:', slide.image);
+    img.classList.remove('visible');
+    if (placeholder) placeholder.classList.remove('hidden');
+  };
+
+  img.src = slide.image;
+}
   // subtitles
   const caption = document.getElementById('ar-subtitle');
   if (caption) {
