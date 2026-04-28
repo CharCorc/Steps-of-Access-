@@ -81,8 +81,7 @@ const TIMELINE = [
     year: '1990',
     tag: 'Legislation',
     title: 'Americans with Disabilities Act Signed',
-    body: 'On July 26, 1990, President George H.W. Bush signed the ADA into law on the South Lawn of the White House, surrounded by disability rights advocates. The law banned discrimination in employment, public accommodations, transportation, and government services — the largest civil rights legislation since the Civil Rights Act of 1964.',
-    gold: true
+body: 'On July 26, 1990, President George H.W. Bush signed the ADA into law on the South Lawn of the White House, surrounded by disability rights advocates. The law banned discrimination in employment, public accommodations, transportation, and government services, making it the largest civil rights legislation since the Civil Rights Act of 1964.',    gold: true
   },
   {
     year: '1998',
@@ -95,7 +94,7 @@ const TIMELINE = [
     year: '2008',
     tag: 'ADA Update',
     title: 'ADA Amendments Act (ADAAA)',
-    body: 'A series of Supreme Court rulings had narrowed the ADA\'s definition of disability, limiting who could seek its protections. Congress responded with the ADAAA, broadening the definition significantly and clarifying that the law should be construed in favor of wide coverage — restoring the ADA\'s original scope.',
+body: 'A series of Supreme Court rulings had narrowed the ADA\'s definition of disability, limiting who could seek its protections. Congress responded with the ADAAA, broadening the definition significantly and clarifying that the law should be construed in favor of wide coverage, restoring the ADA\'s original scope.',
     gold: false
   },
   {
@@ -109,8 +108,7 @@ const TIMELINE = [
     year: 'Ongoing',
     tag: 'Present Day',
     title: 'The Work Continues',
-    body: 'From web accessibility litigation to fights over Medicaid funding, from campus accessibility advocacy to transportation equity, the disability rights movement remains active. The ADA was infrastructure, not an endpoint. How that infrastructure is maintained, expanded, and enforced is an ongoing civic question — one that the steps you are standing in front of are part of.',
-    gold: true
+body: 'From web accessibility litigation to fights over Medicaid funding, from campus accessibility advocacy to transportation equity, the disability rights movement remains active. The ADA was infrastructure, not an endpoint. How that infrastructure is maintained, expanded, and enforced is an ongoing civic question, one that the steps you are standing in front of are part of.',    gold: true
   }
 ];
 
