@@ -1104,3 +1104,32 @@ body.text-xl #camera-feed {
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+@media (max-width: 700px) {
+  .background-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 1.25rem 6rem;
+  }
+
+  .bg-image-col {
+    order: 2;
+  }
+
+  .archival-frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .archival-frame img {
+    display: block;
+    object-fit: cover;
+  }
+
+  .archival-frame .frame-fallback {
+    display: none;
+  }
+}
+
+.ar-overlay-placeholder {
+  display: none !important;
+}

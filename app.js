@@ -33,14 +33,14 @@ const AR_SLIDES = [
     text: 'Over a thousand disability rights activists gathered on the west lawn of the U.S. Capitol. At the base of these 83 steps, dozens left their wheelchairs and crawled upward on their hands and knees.',
     image: 'images/one.png',
     subtitle: 'Activists gather at the base of the Capitol steps, March 12, 1990.',
-    audioAfter: 'audio/ADA now.mp3'   // play clip1 before showing this slide
+    audioStart: 'audio/ADA now.mp3'   // play clip1 before showing this slide
   },
   {
     eyebrow: 'Jennifer Keelan Leads the Way',
     text: 'Jennifer Keelan, eight years old and living with cerebral palsy, pulled herself up the marble steps. "I\'ll take all night if I have to," she said. Her image became the defining photograph of the protest.',
     image: 'images/two.png',
     subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.',
-    audioAfter: 'audio/come on jennifer.mp3'
+    audioStart: 'audio/come on jennifer.mp3'
 
   },
   {
@@ -48,7 +48,7 @@ const AR_SLIDES = [
     text: 'Every step was a physical argument. The protesters were exposing how public buildings — the spaces of democracy — had been designed without them in mind. Architecture determines who belongs.',
     image: 'images/three.png',
     subtitle: 'Protesters climb the stairs. The Capitol dome rises above them.',
-    audioAfter: "audio/I'll take all night if I have to.mp3"
+    audioStart: "audio/I'll take all night if I have to.mp3"
   },
   {
     eyebrow: 'The Movement Behind the Crawl',
@@ -221,23 +221,6 @@ function buildARDots() {
   });
 }
 
-function startMindAR() {
-  const sceneEl = document.querySelector('#mindar-scene');
-  if (!sceneEl) return;
-
-  const start = () => {
-    const arSystem = sceneEl.systems['mindar-image-system'];
-    if (arSystem) {
-      arSystem.start();
-    }
-  };
-
-  if (sceneEl.hasLoaded) {
-    start();
-  } else {
-    sceneEl.addEventListener('loaded', start, { once: true });
-  }
-}
 
 function renderARSlide(withAudio) {
   const slide = AR_SLIDES[state.arSlide];
@@ -308,26 +291,19 @@ if (img) {
 
   // camera hint fade once AR starts
   const hint = document.getElementById('camera-hint');
-  if (hint && state.arSlide > 0) hint.classList.add('hidden');
+if (hint && state.arSlide > 0) hint.classList.add('hidden');
+
+if (slide.audioStart) {
+  playAudioClip(slide.audioStart);
+}
 }
 
 function arNav(dir) {
   const targetSlide = state.arSlide + dir;
   if (targetSlide < 0 || targetSlide >= AR_SLIDES.length) return;
 
-  // Check if the slide we're moving TO had audio queued
-  const destinationSlide = AR_SLIDES[targetSlide];
-  const prevSlide = AR_SLIDES[state.arSlide];
-  const audioKey = (dir > 0 && prevSlide.audioAfter) ? prevSlide.audioAfter : null;
-
   state.arSlide = targetSlide;
-
-  if (dir > 0 && audioKey) {
-    // play audio clip, then render slide
-    playAudioClip(audioKey, () => renderARSlide(false));
-  } else {
-    renderARSlide(false);
-  }
+  renderARSlide(false);
 }
 
 function toggleSubtitles() {
