@@ -565,7 +565,7 @@ body.text-xl  .scalable { font-size: 2rem !important; }
 /* Persistent Capitol layer. This stays through the AR sequence. */
 .capitol-overlay-img {
   position: absolute;
-  top: -12vh;
+  top: -10vh;
   left: 0;
   width: 100%;
   height: 76vh;
@@ -612,9 +612,9 @@ body.text-xl  .scalable { font-size: 2rem !important; }
 }
 
 .ar-overlay-img.small-five {
-  width: 55vw;
-  height: 34vh;
-  top: 14vh;
+  width: 50vw !important;
+  height: 32vh !important;
+  top: 15vh !important;
 }
 
 .ar-overlay-placeholder,
