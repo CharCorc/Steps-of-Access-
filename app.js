@@ -1,8 +1,9 @@
 /* =============================================================
    Steps of Access — app.js
-   Images:  images/capitol.png, images/one.png … images/seven.png
-   Audio:   audio/clip1.*, audio/clip2.*, audio/clip3.*
-   Targets: targets/Brookings.mind
+   Camera overlay version
+   Images: images/capitol.png, images/one.png … images/seven.png
+   Audio: audio/ADA now.mp3, audio/come on jennifer.mp3,
+          audio/I'll take all night if I have to.mp3
    ============================================================= */
 
 'use strict';
@@ -19,8 +20,6 @@ const state = {
 };
 
 // ─── AR SLIDES ───────────────────────────────────────────────
-// 7 images + capitol = 8 assets; 7 narrative slides cycling
-// audio clips: clip1 after slide 0→1, clip2 after slide 2→3, clip3 after slide 4→5
 const AR_SLIDES = [
   {
     eyebrow: 'Brookings Steps · Present Day',
@@ -33,7 +32,7 @@ const AR_SLIDES = [
     text: 'Over a thousand disability rights activists gathered on the west lawn of the U.S. Capitol. At the base of these 83 steps, dozens left their wheelchairs and crawled upward on their hands and knees.',
     image: 'images/one.png',
     subtitle: 'Activists gather at the base of the Capitol steps, March 12, 1990.',
-    audioStart: 'audio/ADA now.mp3'   // play clip1 before showing this slide
+    audioStart: 'audio/ADA now.mp3'
   },
   {
     eyebrow: 'Jennifer Keelan Leads the Way',
@@ -41,7 +40,6 @@ const AR_SLIDES = [
     image: 'images/six.png',
     subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.',
     audioStart: 'audio/come on jennifer.mp3'
-
   },
   {
     eyebrow: 'Architecture as Exclusion',
@@ -60,7 +58,7 @@ const AR_SLIDES = [
     eyebrow: 'A Civil Rights Story',
     text: 'The protest received significant media coverage, but it is rarely taught alongside other civil rights milestones. Scholars argue that the disability rights movement has been systematically underrepresented in how we remember twentieth-century activism.',
     image: 'images/five.png',
-    subtitle: 'News cameras capture the protest on the Capitol steps.',
+    subtitle: 'News cameras capture the protest on the Capitol steps.'
   },
   {
     eyebrow: 'ADA Signed · July 26, 1990',
@@ -71,6 +69,7 @@ const AR_SLIDES = [
   {
     eyebrow: 'Returning to Brookings',
     text: 'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation — what does it mean for a public space to be truly accessible? That question is still being answered.',
+    image: null,
     fadeOut: true,
     subtitle: 'The overlay fades. Brookings Hall steps return to view.'
   }
@@ -116,24 +115,6 @@ const TIMELINE = [
 ];
 
 // ─── AUDIO ───────────────────────────────────────────────────
-// Attempts common extensions in order. File the user provides (clip1, clip2, clip3)
-// may be .mp3, .ogg, .wav — we try each.
-const AUDIO_EXTENSIONS = ['.mp3', '.ogg', '.wav', '.m4a'];
-
-function createAudio(basePath) {
-  const audio = new Audio();
-  audio.preload = 'auto';
-
-  let extIndex = 0;
-  function tryNext() {
-    if (extIndex >= AUDIO_EXTENSIONS.length) return;
-    audio.src = basePath + AUDIO_EXTENSIONS[extIndex++];
-  }
-  audio.addEventListener('error', tryNext);
-  tryNext();
-  return audio;
-}
-
 const audioClips = {
   'audio/ADA now.mp3': new Audio('audio/ADA now.mp3'),
   'audio/come on jennifer.mp3': new Audio('audio/come on jennifer.mp3'),
@@ -146,7 +127,10 @@ Object.values(audioClips).forEach(audio => {
 
 function playAudioClip(basePath, onEnded) {
   const clip = audioClips[basePath];
-  if (!clip) { if (onEnded) onEnded(); return; }
+  if (!clip) {
+    if (onEnded) onEnded();
+    return;
+  }
 
   clip.currentTime = 0;
   const indicator = document.getElementById('audio-indicator');
@@ -156,6 +140,7 @@ function playAudioClip(basePath, onEnded) {
     if (indicator) indicator.classList.remove('playing');
     if (onEnded) onEnded();
   };
+
   clip.onerror = () => {
     state.audioPlaying = false;
     if (indicator) indicator.classList.remove('playing');
@@ -166,13 +151,16 @@ function playAudioClip(basePath, onEnded) {
     state.audioPlaying = true;
     if (indicator) indicator.classList.add('playing');
   }).catch(() => {
-    // autoplay blocked or file missing — proceed silently
     if (onEnded) onEnded();
   });
 }
 
 function stopAllAudio() {
-  Object.values(audioClips).forEach(c => { c.pause(); c.currentTime = 0; });
+  Object.values(audioClips).forEach(clip => {
+    clip.pause();
+    clip.currentTime = 0;
+  });
+
   state.audioPlaying = false;
   const indicator = document.getElementById('audio-indicator');
   if (indicator) indicator.classList.remove('playing');
@@ -186,154 +174,50 @@ function goToPage(id) {
   if (state.currentPage === 'page-ar' && id !== 'page-ar') {
     stopCameraFeed();
   }
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+
   const target = document.getElementById(id);
   if (!target) return;
+
   target.classList.add('active');
   state.currentPage = id;
 
-  if (id === 'page-timeline') revealTimeline();
+  if (id === 'page-timeline') {
+    revealTimeline();
+  }
 }
 
 function startPortal() {
   const portal = document.getElementById('portal');
-  portal.classList.add('active');
+  if (portal) portal.classList.add('active');
+
   setTimeout(() => {
-    portal.classList.remove('active');
+    if (portal) portal.classList.remove('active');
+
     goToPage('page-ar');
     state.arSlide = 0;
+
     renderARSlide(false);
     startCameraFeed();
+
+    const capitol = document.getElementById('capitol-overlay-img');
+    if (capitol) {
+      capitol.classList.remove('fade-out');
+      capitol.classList.add('fade-in');
+    }
   }, 2400);
 }
 
 function restartExperience() {
   state.arSlide = 0;
   goToPage('page-welcome');
+
   const modal = document.getElementById('welcome-modal');
   if (modal) modal.style.display = 'flex';
 }
 
-// ─── AR ──────────────────────────────────────────────────────
-function buildARDots() {
-  const container = document.getElementById('ar-progress');
-  if (!container) return;
-  container.innerHTML = '';
-  AR_SLIDES.forEach((_, i) => {
-    const pip = document.createElement('div');
-    pip.className = 'ar-pip';
-    container.appendChild(pip);
-  });
-}
-
-
-function renderARSlide(withAudio) {
-  const slide = AR_SLIDES[state.arSlide];
-  if (!slide) return;
-
-  // text
-  const eyebrow = document.getElementById('ar-eyebrow');
-  const textEl = document.getElementById('ar-narrative-text');
-  if (eyebrow) eyebrow.textContent = slide.eyebrow;
-  if (textEl) {
-    // re-trigger animation
-    textEl.style.animation = 'none';
-    void textEl.offsetWidth;
-    textEl.style.animation = '';
-    textEl.textContent = slide.text;
-  }
-
-  // image overlay
-  const img = document.getElementById('ar-overlay-img');
-  const placeholder = document.getElementById('ar-overlay-placeholder');
-  const placeholderLabel = document.getElementById('ar-placeholder-file');
-
-  if (placeholderLabel) placeholderLabel.textContent = slide.image;
-
-  if (img) {
-    img.classList.remove('visible');
-
-    img.onload = () => {
-      img.classList.remove('capitol-fade');
-      img.classList.add('visible');
-
-      img.classList.remove('capitol-fade', 'capitol-fade-out');
-
-      if (slide.fadeOut) {
-        img.classList.add('capitol-fade-out');
-      } else if (slide.image.includes('capitol')) {
-        img.classList.add('capitol-fade');
-      }
-
-      if (placeholder) placeholder.classList.add('hidden');
-    };
-
-    img.onerror = () => {
-      console.error('Could not load AR image:', slide.image);
-      img.classList.remove('visible');
-      if (placeholder) placeholder.classList.remove('hidden');
-    };
-
-    img.src = slide.image;
-  }
-  // subtitles
-  const caption = document.getElementById('ar-subtitle');
-  if (caption) {
-    caption.textContent = slide.subtitle || '';
-    caption.classList.toggle('visible', state.subtitlesOn);
-  }
-
-  // progress pips
-  const pips = document.querySelectorAll('.ar-pip');
-  pips.forEach((pip, i) => {
-    pip.classList.remove('done', 'active');
-    if (i < state.arSlide) pip.classList.add('done');
-    if (i === state.arSlide) pip.classList.add('active');
-  });
-
-  // back/next buttons
-  const backBtn = document.getElementById('ar-back');
-  const nextBtn = document.getElementById('ar-next');
-  if (backBtn) {
-    backBtn.disabled = state.arSlide === 0;
-  }
-  if (nextBtn) {
-    const isLast = state.arSlide === AR_SLIDES.length - 1;
-    nextBtn.textContent = isLast ? 'Continue →' : 'Next →';
-    nextBtn.onclick = isLast ? () => goToPage('page-timeline') : () => arNav(1);
-    nextBtn.classList.toggle('forward', true);
-  }
-
-  // camera hint fade once AR starts
-  const hint = document.getElementById('camera-hint');
-  if (hint && state.arSlide > 0) hint.classList.add('hidden');
-
-  if (slide.audioStart) {
-    playAudioClip(slide.audioStart);
-  }
-}
-
-function arNav(dir) {
-  const targetSlide = state.arSlide + dir;
-  if (targetSlide < 0 || targetSlide >= AR_SLIDES.length) return;
-
-  state.arSlide = targetSlide;
-  renderARSlide(false);
-}
-
-function toggleSubtitles() {
-  state.subtitlesOn = !state.subtitlesOn;
-  const btn = document.getElementById('subtitles-btn');
-  const caption = document.getElementById('ar-subtitle');
-  if (btn) btn.classList.toggle('on', state.subtitlesOn);
-  if (caption) {
-    caption.classList.toggle('visible', state.subtitlesOn);
-    if (state.subtitlesOn) {
-      caption.textContent = AR_SLIDES[state.arSlide]?.subtitle || '';
-    }
-  }
-}
-
+// ─── CAMERA ──────────────────────────────────────────────────
 async function startCameraFeed() {
   const video = document.getElementById('camera-feed');
   if (!video) return;
@@ -362,14 +246,141 @@ function stopCameraFeed() {
   video.srcObject = null;
 }
 
+// ─── AR ──────────────────────────────────────────────────────
+function buildARDots() {
+  const container = document.getElementById('ar-progress');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  AR_SLIDES.forEach(() => {
+    const pip = document.createElement('div');
+    pip.className = 'ar-pip';
+    container.appendChild(pip);
+  });
+}
+
+function renderARSlide() {
+  const slide = AR_SLIDES[state.arSlide];
+  if (!slide) return;
+
+  const eyebrow = document.getElementById('ar-eyebrow');
+  const textEl = document.getElementById('ar-narrative-text');
+
+  if (eyebrow) eyebrow.textContent = slide.eyebrow;
+
+  if (textEl) {
+    textEl.style.animation = 'none';
+    void textEl.offsetWidth;
+    textEl.style.animation = '';
+    textEl.textContent = slide.text;
+  }
+
+  const img = document.getElementById('ar-overlay-img');
+  const placeholder = document.getElementById('ar-overlay-placeholder');
+  const placeholderLabel = document.getElementById('ar-placeholder-file');
+
+  if (placeholderLabel) {
+    placeholderLabel.textContent = slide.image || '';
+  }
+
+  if (img) {
+    img.classList.remove('visible', 'small-one', 'small-five', 'capitol-fade', 'capitol-fade-out');
+
+    if (!slide.image) {
+      img.removeAttribute('src');
+      if (placeholder) placeholder.classList.add('hidden');
+    } else {
+      img.onload = () => {
+        img.classList.add('visible');
+
+        if (slide.image.includes('one.png')) {
+          img.classList.add('small-one');
+        }
+
+        if (slide.image.includes('five.png')) {
+          img.classList.add('small-five');
+        }
+
+        if (placeholder) placeholder.classList.add('hidden');
+      };
+
+      img.onerror = () => {
+        console.error('Could not load AR image:', slide.image);
+        img.classList.remove('visible');
+        if (placeholder) placeholder.classList.remove('hidden');
+      };
+
+      img.src = slide.image;
+    }
+  }
+
+  const caption = document.getElementById('ar-subtitle');
+  if (caption) {
+    caption.textContent = '';
+    caption.classList.remove('visible');
+  }
+
+  const pips = document.querySelectorAll('.ar-pip');
+  pips.forEach((pip, i) => {
+    pip.classList.remove('done', 'active');
+
+    if (i < state.arSlide) pip.classList.add('done');
+    if (i === state.arSlide) pip.classList.add('active');
+  });
+
+  const backBtn = document.getElementById('ar-back');
+  const nextBtn = document.getElementById('ar-next');
+
+  if (backBtn) {
+    backBtn.disabled = state.arSlide === 0;
+  }
+
+  if (nextBtn) {
+    const isLast = state.arSlide === AR_SLIDES.length - 1;
+    nextBtn.textContent = isLast ? 'Continue →' : 'Next →';
+    nextBtn.onclick = isLast ? () => goToPage('page-timeline') : () => arNav(1);
+    nextBtn.classList.toggle('forward', true);
+  }
+
+  const hint = document.getElementById('camera-hint');
+  if (hint && state.arSlide > 0) {
+    hint.classList.add('hidden');
+  }
+
+  if (slide.audioStart) {
+    playAudioClip(slide.audioStart);
+  }
+
+  const capitol = document.getElementById('capitol-overlay-img');
+
+  if (capitol && state.arSlide === AR_SLIDES.length - 1) {
+    capitol.classList.remove('fade-in');
+    capitol.classList.add('fade-out');
+  }
+}
+
+function arNav(dir) {
+  const targetSlide = state.arSlide + dir;
+  if (targetSlide < 0 || targetSlide >= AR_SLIDES.length) return;
+
+  stopAllAudio();
+
+  state.arSlide = targetSlide;
+  renderARSlide();
+}
+
 // ─── TIMELINE ─────────────────────────────────────────────────
 function buildTimeline() {
   const track = document.getElementById('timeline-track');
   if (!track) return;
+
   track.innerHTML = '';
-  TIMELINE.forEach((item) => {
+
+  TIMELINE.forEach(item => {
     const entry = document.createElement('div');
     entry.className = 'tl-entry';
+
     entry.innerHTML = `
       <div class="tl-dot${item.gold ? ' gold' : ''}"></div>
       <span class="tl-year">${item.year}</span>
@@ -377,27 +388,32 @@ function buildTimeline() {
       <h3 class="tl-title">${item.title}</h3>
       <p class="tl-body scalable">${item.body}</p>
     `;
+
     track.appendChild(entry);
   });
 }
 
 function revealTimeline() {
   const entries = document.querySelectorAll('.tl-entry');
-  entries.forEach((el, i) => {
-    el.classList.remove('in');
-    setTimeout(() => el.classList.add('in'), 100 + 130 * i);
+
+  entries.forEach((entry, i) => {
+    entry.classList.remove('in');
+    setTimeout(() => entry.classList.add('in'), 100 + 130 * i);
   });
 }
 
 // ─── RESOURCE TABS ────────────────────────────────────────────
 function switchTab(panelId, clickedBtn) {
-  document.querySelectorAll('.res-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.res-tab').forEach(b => {
-    b.classList.remove('active');
-    b.setAttribute('aria-selected', 'false');
+  document.querySelectorAll('.res-panel').forEach(panel => panel.classList.remove('active'));
+
+  document.querySelectorAll('.res-tab').forEach(button => {
+    button.classList.remove('active');
+    button.setAttribute('aria-selected', 'false');
   });
+
   const panel = document.getElementById('tab-' + panelId);
   if (panel) panel.classList.add('active');
+
   clickedBtn.classList.add('active');
   clickedBtn.setAttribute('aria-selected', 'true');
 }
@@ -405,10 +421,15 @@ function switchTab(panelId, clickedBtn) {
 // ─── TEXT SIZE ────────────────────────────────────────────────
 function setTextSize(size) {
   document.body.classList.remove('text-lg', 'text-xl');
-  if (size !== 'normal') document.body.classList.add('text-' + size);
+
+  if (size !== 'normal') {
+    document.body.classList.add('text-' + size);
+  }
+
   state.textSize = size;
-  document.querySelectorAll('.ts-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.size === size);
+
+  document.querySelectorAll('.ts-btn').forEach(button => {
+    button.classList.toggle('active', button.dataset.size === size);
   });
 }
 
@@ -422,11 +443,14 @@ function getPageText() {
       return slide ? slide.eyebrow + '. ' + slide.text : '';
     },
     'page-timeline': () => Array.from(document.querySelectorAll('.tl-title, .tl-body'))
-      .map(el => el.innerText).join('. '),
+      .map(el => el.innerText)
+      .join('. '),
     'page-ending': () => document.querySelector('#page-ending .ending-sub')?.innerText ?? '',
     'page-resources': () => Array.from(document.querySelectorAll('.res-panel.active .res-title, .res-panel.active .res-desc'))
-      .map(el => el.innerText).join('. ')
+      .map(el => el.innerText)
+      .join('. ')
   };
+
   return (map[state.currentPage] ?? (() => ''))();
 }
 
@@ -439,30 +463,40 @@ function startTTS(text) {
     alert('Text-to-speech is not supported in this browser.');
     return;
   }
+
   stopTTS();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.rate = 0.9;
-  utt.onend = () => setTTSState(false);
-  utt.onerror = () => setTTSState(false);
-  state.ttsUtterance = utt;
-  speechSynthesis.speak(utt);
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 0.9;
+  utterance.onend = () => setTTSState(false);
+  utterance.onerror = () => setTTSState(false);
+
+  state.ttsUtterance = utterance;
+  speechSynthesis.speak(utterance);
+
   setTTSState(true);
 }
 
 function stopTTS() {
-  speechSynthesis.cancel();
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+  }
+
   state.ttsUtterance = null;
   setTTSState(false);
 }
 
 function setTTSState(on) {
   state.ttsActive = on;
+
   const corner = document.getElementById('tts-corner');
   const barBtn = document.getElementById('tts-bar-btn');
+
   if (corner) {
     corner.classList.toggle('speaking', on);
     corner.textContent = on ? '⏹ Stop' : '🔊 Read';
   }
+
   if (barBtn) {
     barBtn.classList.toggle('active', on);
     barBtn.textContent = on ? 'Stop' : 'Read Aloud';
@@ -470,10 +504,10 @@ function setTTSState(on) {
 }
 
 // ─── KEYBOARD ────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
+document.addEventListener('keydown', event => {
   if (state.currentPage === 'page-ar') {
-    if (e.key === 'ArrowRight') arNav(1);
-    if (e.key === 'ArrowLeft') arNav(-1);
+    if (event.key === 'ArrowRight') arNav(1);
+    if (event.key === 'ArrowLeft') arNav(-1);
   }
 });
 
@@ -481,11 +515,10 @@ document.addEventListener('keydown', e => {
 function init() {
   buildARDots();
   buildTimeline();
-  renderARSlide(false);
+  renderARSlide();
 
-  // Wire text-size buttons via data attributes
-  document.querySelectorAll('.ts-btn').forEach(btn => {
-    btn.addEventListener('click', () => setTextSize(btn.dataset.size));
+  document.querySelectorAll('.ts-btn').forEach(button => {
+    button.addEventListener('click', () => setTextSize(button.dataset.size));
   });
 }
 

@@ -1295,3 +1295,106 @@ body.text-xl #camera-feed {
 .subtitles-caption {
   display: none !important;
 }
+
+/* Large text AR fix */
+#page-ar {
+  overflow: hidden;
+}
+
+.ar-camera {
+  display: block;
+}
+
+#camera-feed {
+  height: 62vh !important;
+}
+
+.ar-overlay-area {
+  height: 62vh !important;
+}
+
+.ar-panel {
+  position: absolute;
+  top: 62vh !important;
+  bottom: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  padding: 0.75rem 1.25rem 6rem !important;
+}
+
+body.text-lg .ar-panel,
+body.text-xl .ar-panel {
+  top: 62vh !important;
+  font-size: inherit;
+}
+
+body.text-lg .ar-narrative-text,
+body.text-xl .ar-narrative-text {
+  font-size: inherit !important;
+  line-height: 1.45;
+}
+
+.capitol-overlay-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 62vh;
+  object-fit: contain;
+  object-position: top center;
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.capitol-overlay-img.fade-in {
+  animation: capitolFadeIn 10s ease forwards;
+}
+
+.capitol-overlay-img.fade-out {
+  animation: capitolFadeOut 10s ease forwards;
+}
+
+@keyframes capitolFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 0.65;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes capitolFadeOut {
+  from {
+    opacity: 0.65;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(10px);
+  }
+}
+
+.ar-overlay-img {
+  z-index: 6;
+  object-fit: contain;
+}
+
+.ar-overlay-img.small-one {
+  width: 25%;
+  height: 25%;
+  align-self: center;
+}
+
+.ar-overlay-img.small-five {
+  width: 10%;
+  height: 10%;
+  align-self: center;
+}
