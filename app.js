@@ -181,6 +181,10 @@ function stopAllAudio() {
 function goToPage(id) {
   stopTTS();
   stopAllAudio();
+
+  if (state.currentPage === 'page-ar' && id !== 'page-ar') {
+    stopCameraFeed();
+  }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById(id);
   if (!target) return;
@@ -198,7 +202,8 @@ function startPortal() {
     goToPage('page-ar');
     state.arSlide = 0;
     renderARSlide(false);
-    startCameraFeed();}, 2400);
+    startCameraFeed();
+  }, 2400);
 }
 
 function restartExperience() {
@@ -237,29 +242,35 @@ function renderARSlide(withAudio) {
     textEl.textContent = slide.text;
   }
 
-// image overlay
-const img = document.getElementById('ar-overlay-img');
-const placeholder = document.getElementById('ar-overlay-placeholder');
-const placeholderLabel = document.getElementById('ar-placeholder-file');
+  // image overlay
+  const img = document.getElementById('ar-overlay-img');
+  const placeholder = document.getElementById('ar-overlay-placeholder');
+  const placeholderLabel = document.getElementById('ar-placeholder-file');
 
-if (placeholderLabel) placeholderLabel.textContent = slide.image;
+  if (placeholderLabel) placeholderLabel.textContent = slide.image;
 
-if (img) {
-  img.classList.remove('visible');
-
-  img.onload = () => {
-    img.classList.add('visible');
-    if (placeholder) placeholder.classList.add('hidden');
-  };
-
-  img.onerror = () => {
-    console.error('Could not load AR image:', slide.image);
+  if (img) {
     img.classList.remove('visible');
-    if (placeholder) placeholder.classList.remove('hidden');
-  };
 
-  img.src = slide.image;
-}
+    img.onload = () => {
+      img.classList.remove('capitol-fade');
+      img.classList.add('visible');
+
+      if (slide.image.includes('capitol')) {
+        img.classList.add('capitol-fade');
+      }
+
+      if (placeholder) placeholder.classList.add('hidden');
+    };
+
+    img.onerror = () => {
+      console.error('Could not load AR image:', slide.image);
+      img.classList.remove('visible');
+      if (placeholder) placeholder.classList.remove('hidden');
+    };
+
+    img.src = slide.image;
+  }
   // subtitles
   const caption = document.getElementById('ar-subtitle');
   if (caption) {
@@ -290,11 +301,11 @@ if (img) {
 
   // camera hint fade once AR starts
   const hint = document.getElementById('camera-hint');
-if (hint && state.arSlide > 0) hint.classList.add('hidden');
+  if (hint && state.arSlide > 0) hint.classList.add('hidden');
 
-if (slide.audioStart) {
-  playAudioClip(slide.audioStart);
-}
+  if (slide.audioStart) {
+    playAudioClip(slide.audioStart);
+  }
 }
 
 function arNav(dir) {
@@ -336,6 +347,14 @@ async function startCameraFeed() {
     console.error('Camera could not start:', err);
     alert('Camera access did not start. Make sure you are using HTTPS and allow camera permissions.');
   }
+}
+
+function stopCameraFeed() {
+  const video = document.getElementById('camera-feed');
+  if (!video || !video.srcObject) return;
+
+  video.srcObject.getTracks().forEach(track => track.stop());
+  video.srcObject = null;
 }
 
 // ─── TIMELINE ─────────────────────────────────────────────────
