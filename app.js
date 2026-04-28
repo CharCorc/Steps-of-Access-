@@ -117,7 +117,8 @@ body: 'From web accessibility litigation to fights over Medicaid funding, from c
 const audioClips = {
   'audio/ADA now.mp3': new Audio('audio/ADA now.mp3'),
   'audio/come on jennifer.mp3': new Audio('audio/come on jennifer.mp3'),
-  "audio/I'll take all night if I have to.mp3": new Audio("audio/I'll take all night if I have to.mp3")
+  "audio/I'll take all night if I have to.mp3": new Audio("audio/I'll take all night if I have to.mp3"),
+  "audio/audio/access is a civil right.mp3": new Audio("audio/access is a civil right.mp3")
 };
 
 Object.values(audioClips).forEach(audio => {
