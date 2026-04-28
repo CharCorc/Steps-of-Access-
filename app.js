@@ -43,14 +43,14 @@ const AR_SLIDES = [
   },
   {
     eyebrow: 'Architecture as Exclusion',
-    text: 'Every step was a physical argument. The protesters were exposing how public buildings — the spaces of democracy — had been designed without them in mind. Architecture determines who belongs.',
+    text: 'Every step was a physical argument. The protesters were exposing how public buildings, the spaces of democracy, had been designed without them in mind. Architecture determines who belongs.',
     image: 'images/three.png',
     subtitle: 'Protesters climb the stairs. The Capitol dome rises above them.',
     audioStart: "audio/I'll take all night if I have to.mp3"
   },
   {
     eyebrow: 'The Movement Behind the Crawl',
-    text: 'The Capitol Crawl did not happen in isolation. It was the product of decades of organizing — protests, sit-ins, and legal fights — by disabled activists across the United States who refused to be excluded from civic life.',
+    text: 'The Capitol Crawl did not happen in isolation. It was the product of decades of organizing, protests, sit-ins, and legal fights, by disabled activists across the United States who refused to be excluded from civic life.',
     image: 'images/four.png',
     subtitle: 'Archival image: disability rights activists at an earlier protest.'
   },
@@ -62,13 +62,13 @@ const AR_SLIDES = [
   },
   {
     eyebrow: 'ADA Signed · July 26, 1990',
-    text: 'Four months after the Capitol Crawl, President George H.W. Bush signed the Americans with Disabilities Act into law — the most comprehensive disability rights legislation in U.S. history. The steps had worked.',
+    text: 'Four months after the Capitol Crawl, President George H.W. Bush signed the Americans with Disabilities Act into law, the most comprehensive disability rights legislation in U.S. history. The steps had worked.',
     image: 'images/two.png',
     subtitle: 'The ADA signing ceremony. Disability rights advocates stand nearby.'
   },
   {
     eyebrow: 'Returning to Brookings',
-    text: 'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation — what does it mean for a public space to be truly accessible? That question is still being answered.',
+    text: 'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation: what does it mean for a public space to be truly accessible? That question is still being answered.',
     image: null,
     fadeOut: true,
     subtitle: 'The overlay fades. Brookings Hall steps return to view.'
@@ -102,7 +102,7 @@ const TIMELINE = [
     year: '2010',
     tag: 'Physical Access',
     title: 'ADA Standards for Accessible Design Updated',
-    body: 'The Department of Justice issued comprehensive updates to ADA accessibility standards — the first major revision in nearly twenty years. New requirements addressed recreational facilities, pools, and detailed specifications for built environments, reflecting two decades of lived experience under the original law.',
+    body: 'The Department of Justice issued comprehensive updates to ADA accessibility standards, the first major revision in nearly twenty years. New requirements addressed recreational facilities, pools, and detailed specifications for built environments, reflecting two decades of lived experience under the original law.',
     gold: false
   },
   {
