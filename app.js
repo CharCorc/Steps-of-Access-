@@ -38,7 +38,7 @@ const AR_SLIDES = [
   {
     eyebrow: 'Jennifer Keelan Leads the Way',
     text: 'Jennifer Keelan, eight years old and living with cerebral palsy, pulled herself up the marble steps. "I\'ll take all night if I have to," she said. Her image became the defining photograph of the protest.',
-    image: 'images/two.png',
+    image: 'images/six.png',
     subtitle: 'Jennifer Keelan, age eight, crawls up the Capitol steps.',
     audioStart: 'audio/come on jennifer.mp3'
 
@@ -65,13 +65,12 @@ const AR_SLIDES = [
   {
     eyebrow: 'ADA Signed · July 26, 1990',
     text: 'Four months after the Capitol Crawl, President George H.W. Bush signed the Americans with Disabilities Act into law — the most comprehensive disability rights legislation in U.S. history. The steps had worked.',
-    image: 'images/six.png',
+    image: 'images/two.png',
     subtitle: 'The ADA signing ceremony. Disability rights advocates stand nearby.'
   },
   {
     eyebrow: 'Returning to Brookings',
     text: 'The Capitol overlay fades. You are back in front of Brookings Hall. The steps here are part of the same conversation — what does it mean for a public space to be truly accessible? That question is still being answered.',
-    image: 'images/seven.png',
     subtitle: 'The overlay fades. Brookings Hall steps return to view.'
   }
 ];
