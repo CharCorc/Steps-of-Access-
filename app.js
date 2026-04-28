@@ -52,7 +52,8 @@ const AR_SLIDES = [
     eyebrow: 'The Movement Behind the Crawl',
     text: 'The Capitol Crawl did not happen in isolation. It was the product of decades of organizing, protests, sit-ins, and legal fights, by disabled activists across the United States who refused to be excluded from civic life.',
     image: 'images/four.png',
-    subtitle: 'Archival image: disability rights activists at an earlier protest.'
+    subtitle: 'Archival image: disability rights activists at an earlier protest.',
+    audioStart: "audio/access is a civil right.mp3"
   },
   {
     eyebrow: 'A Civil Rights Story',
