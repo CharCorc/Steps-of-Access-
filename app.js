@@ -24,7 +24,7 @@ const AR_SLIDES = [
   {
     eyebrow: 'Brookings Steps · Present Day',
     text: 'You are standing in front of Brookings Hall at Washington University. Watch as the Capitol steps are overlaid onto this space, connecting a national moment of protest to a campus you walk past every day.',
-    image: 'images/capitol.png',
+    image: null,
     subtitle: 'The steps of the U.S. Capitol are being overlaid onto Brookings Hall.'
   },
   {
